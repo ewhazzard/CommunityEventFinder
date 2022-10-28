@@ -1,8 +1,24 @@
 class Comment:
-    def __init__(self, content, comment_id, comment_date, user_id):
-        self._content = content
-        self._comment_id = comment_id
-        self._comment_date = comment_date
-        self._user_id = user_id
-    
-    
+    def __init__ (self):
+        
+        # Variables
+        
+        content
+        comment_id
+        comment_date
+        user_id
+        
+        # Methods
+        
+        def Comment(content, comment_id, comment_date, user_id):
+            pass
+        
+        def get_date():
+            pass
+        
+        def get_content():
+            pass
+        
+        def set_content(content):
+            pass
+            
