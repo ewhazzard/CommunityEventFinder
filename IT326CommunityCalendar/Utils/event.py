@@ -7,11 +7,16 @@ class Event:
         self.RSVPs=[]
     
     def view_details(self,):
+        pass
 
     def add_RSVP(self,id):
+        pass
 
     def add_comment(self,id):
+        pass
 
     def remove_RSVP(self,id):
+        pass
 
     def remove_comment(self,id): 
+        pass
