@@ -1,6 +1,7 @@
 html{
     background-color: rgb(234, 234, 234);
 }
+
 #main_header{
     font-size: 46px;
     text-align: center;
@@ -8,12 +9,13 @@ html{
 
 #top_header_body{
     text-align: center;
+    border-top: 5px solid rgba(21, 21, 255, 0.874);
 
 }
 
-#events_section{
+#profile_info_section{
     -webkit-box-shadow: 0px -8px 15px 0px rgba(0,0,0,0.4); 
-    box-shadow: 0px -8px 15px 0px rgba(0,0,0,0.4);
+box-shadow: 0px -8px 15px 0px rgba(0,0,0,0.4);
     background-color: rgba(21, 87, 255, 0.805);
     width: 80%;
     margin: 0 auto 0 auto;
@@ -22,7 +24,7 @@ html{
     border-radius: 10px;
 }
 
-#events_section h2{
+#profile_info_section h2{
     color: white;
     font-size: 30px;
 }
