@@ -11,7 +11,7 @@ html{
     border-top: 5px solid rgba(21, 21, 255, 0.874);
 }
 
-#upcoming_events_section{
+#events_section{
     background-color: rgba(21, 21, 255, 0.874);
     width: 80%;
     margin: 0 auto 0 auto;
@@ -20,7 +20,7 @@ html{
     border-radius: 10px;
 }
 
-#upcoming_events_section h2{
+#events_section h2{
     color: white;
     font-size: 30px;
 }
