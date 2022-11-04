@@ -1,6 +1,11 @@
 html{
     background-color: rgb(234, 234, 234);
 }
+#customnavitem{
+    text-decoration: none !important;
+    color: grey;
+    margin: 0px 10px 0px 10px;
+}
 #main_header{
     font-size: 46px;
     text-align: center;
