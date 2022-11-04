@@ -10,6 +10,15 @@
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div id="navbarSupportedContent">
+                <a class="navbar-brand" href="{% url 'homepage' %}">Community Event Finder</a>
+                <a class="nav-item custom-nav-item"  href="{% url 'homepage' %}">Home</a>
+                <a class="nav-item custom-nav-item" href="{% url 'searchpage' %}">Event Search</a>
+                <a class="nav-item custom-nav-item" id="active-nav-item" href="{% url 'profilepage' %}">Profile</a>
+            </div>
+
+        </nav>
         <h1 id="main_header">(User Name)'s Profile</h1>
         <div id="profile_info_section">
             <h2>Profile Information</h2>

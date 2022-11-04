@@ -1,6 +1,17 @@
 html{
     background-color: rgb(234, 234, 234);
 }
+
+.custom-nav-item{
+    text-decoration: none !important;
+    color: rgb(77, 77, 77);
+    margin: 0px 10px 0px 10px;
+}
+
+#active-nav-item{
+    font-weight: 800;
+}
+
 #main_header{
     font-size: 46px;
     text-align: center;
