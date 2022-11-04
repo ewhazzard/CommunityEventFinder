@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='homepage'),
-    path('admin/', admin.site.urls)
+    path('search/', views.event_search, name='searchpage')
 ]
