@@ -1,3 +1,7 @@
+from RSVP import RSVP
+from comment import Comment
+from event_details import Event_Details
+
 class Event:
     def __init__(self,event_id,contact_info,user_id):
         self.__event_id=event_id
