@@ -1,10 +1,12 @@
+
 class User_Details:
     def __init__ (self,hobbies,age,intrests,gender):
         self.hobbies=hobbies
         self.age=age
         self.intrests=intrests
         self.gender=gender
-
+        
+    
     def get_hobbies(self):
         return self.hobbies
 
