@@ -15,7 +15,7 @@ class User_Details:
         self.loc.set_zip(zipcode)
 
     def get_location(self):
-        location=self.loc.get_street()+" "+ self.loc.get_city()+" "+self.loc.get_state()+" "+self.loc.get_zip()
+        location=self.loc.get_street()+" "+ self.loc.get_city()+" "+self.loc.get_state()+" "+self.loc.get_zipcode()
         return location
     
     def get_hobbies(self):
