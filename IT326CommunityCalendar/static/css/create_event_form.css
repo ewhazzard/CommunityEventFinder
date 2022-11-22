@@ -1,9 +1,13 @@
 #main_header{
+    text-align: center;
     background-color: blue;
-    font-size: 25px;
+    font-size: 55px;
+    color: white;
 }
 
 #top_header_body{
+    text-align: center;
+    margin: 40px auto auto auto;
     color: black;
 }
 
