@@ -1,0 +1,14 @@
+#main_header{
+    background-color: blue;
+    font-size: 25px;
+}
+
+#top_header_body{
+    color: black;
+}
+
+#event_form_section{
+    margin: 0 auto 0 auto;
+    height: 20vh;
+    width: 70%;
+}

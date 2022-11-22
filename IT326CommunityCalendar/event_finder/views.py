@@ -14,6 +14,9 @@ def profile(request):
 def login(request):
     return render(request, 'login_page.html')
 
+def eventcreate(request):
+    return render(request, 'create_event_form.html')
+    
 def create_account(request):
     form = CEFForm()
     if request.method == 'POST':
