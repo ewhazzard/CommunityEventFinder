@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import CEFForm
+from .forms import CEFForm, LoginForm
+from .models import Users
 
 # Create your views here.
 def home(request):
@@ -29,3 +30,18 @@ def create_account(request):
             return redirect('home')
     context = {'form': form}
     return render(request, 'create_account.html', context)
+
+def login(request):
+    form = LoginForm()
+    if request.method == 'POST':
+        # get form object from user
+        form = LoginForm(request.POST)
+        # Try to Get User object from input
+        user = Users.objects.get(user_username = form['user_username'].value())
+        if user.user_username == form['user_username'].value():
+            return redirect('')
+        else:
+            pass
+            # Handle incorrect Login
+    context = {'form': form}
+    return render(request, 'login.html', context)

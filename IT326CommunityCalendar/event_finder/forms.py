@@ -8,3 +8,8 @@ class CEFForm(ModelForm):
         widgets = {
             'gender': widgets.RadioSelect()
         }
+        
+class LoginForm(ModelForm):
+    class Meta:
+        model = Users
+        fields = ['user_username', 'user_password']
