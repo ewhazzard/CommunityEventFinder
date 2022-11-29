@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import CEFForm, LoginForm
+from django.http import HttpResponse
+from .forms import CEFForm, LoginForm,CreateEvent
 from .models import Users
 
 # Create your views here.
@@ -16,7 +17,15 @@ def login(request):
     return render(request, 'login_page.html')
 
 def eventcreate(request):
-    return render(request, 'create_event_form.html')
+    if request.method == "POST":
+        form = CreateEvent(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = CreateEvent()
+    return render(request, 'create_event_form.html',{"form":form})
     
 def create_account(request):
     form = CEFForm()
