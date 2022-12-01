@@ -34,9 +34,12 @@ class Event(models.Model):
 class Comment(models.Model):
     comment_id = models.IntegerField(verbose_name="Comment ID", primary_key=True)
     event_id = models.IntegerField(verbose_name="Event ID",foreign_key=True)
+    user_id = models.IntegerField(verbose_name="Event ID", foreign_key=True)
 
 class RSVP(models.Model):
     rsvp_id = models.IntegerField(verbose_name="RSVP ID",primary_key=True)
     event_id = models.IntegerField(verbose_name="Event ID",foreign_key=True)
+    user_id = models.IntegerField(verbose_name="Event ID", foreign_key=True)
+    
 
     
