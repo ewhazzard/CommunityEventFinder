@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'CommunityEventFinderDB',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'HOST': 'EHazzard_Laptop_MSI',
         'PORT': '3306'
     }
 }
