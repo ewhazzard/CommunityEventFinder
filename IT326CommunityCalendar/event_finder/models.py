@@ -24,12 +24,19 @@ class Users(models.Model):
     user_city = models.CharField(verbose_name="Location: City", max_length=100)
     user_state = models.CharField(verbose_name="Location: State", max_length=100)
     user_admin = models.BooleanField(verbose_name="Is Admin")
+  
 
-
-class Event(models.Model):
-    
+class Event(models.Model):  
     event_id = models.IntegerField(verbose_name="Event ID", primary_key=True)
     user_id = models.IntegerField(verbose_name="Event ID", foreign_key=True)
     event_name = models.CharField(verbose_name="Event Name", max_length=50)
+
+class Comment(models.Model):
+    comment_id = models.IntegerField(verbose_name="Comment ID", primary_key=True)
+    event_id = models.IntegerField(verbose_name="Event ID",foreign_key=True)
+
+class RSVP(models.Model):
+    rsvp_id = models.IntegerField(verbose_name="RSVP ID",primary_key=True)
+    event_id = models.IntegerField(verbose_name="Event ID",foreign_key=True)
 
     
