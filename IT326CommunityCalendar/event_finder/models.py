@@ -39,7 +39,6 @@ class Event(models.Model):
     event_city = models.CharField(verbose_name="Event Location: City", max_length=100)
     event_state = models.CharField(verbose_name="Event Location: State", max_length=100)
 
-
 class Comment(models.Model):
     comment_id = models.IntegerField(verbose_name="Comment ID", primary_key=True)
     event_id = models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name="Event ID")
