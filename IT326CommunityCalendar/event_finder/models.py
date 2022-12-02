@@ -28,18 +28,18 @@ class Users(models.Model):
 
 class Event(models.Model):  
     event_id = models.IntegerField(verbose_name="Event ID", primary_key=True)
-    user_id = models.IntegerField(verbose_name="Event ID", foreign_key=True)
+    user_id = models.ForeignKey(Users, on_delete = models.CASCADE, verbose_name="Event ID")
     event_name = models.CharField(verbose_name="Event Name", max_length=50)
 
 class Comment(models.Model):
     comment_id = models.IntegerField(verbose_name="Comment ID", primary_key=True)
-    event_id = models.IntegerField(verbose_name="Event ID",foreign_key=True)
-    user_id = models.IntegerField(verbose_name="Event ID", foreign_key=True)
+    event_id = models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name="Event ID")
+    user_id = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name="Event ID")
 
 class RSVP(models.Model):
     rsvp_id = models.IntegerField(verbose_name="RSVP ID",primary_key=True)
-    event_id = models.IntegerField(verbose_name="Event ID",foreign_key=True)
-    user_id = models.IntegerField(verbose_name="Event ID", foreign_key=True)
+    event_id = models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name="Event ID")
+    user_id = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name="Event ID")
     
 
     
