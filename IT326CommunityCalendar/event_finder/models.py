@@ -34,6 +34,11 @@ class Event(models.Model):
     event_date = models.DateTimeField(verbose_name="Event Date")
     creator_first_name = models.CharField(verbose_name="Event Creator First Name",max_length=30)
     creator_last_name = models.CharField(verbose_name="Event Creator Last Name",max_length=30)
+    event_email = models.CharField(verbose_name="Event Email", max_length=100)
+    event_phone = models.IntegerField(verbose_name="Event Phone Number")
+    event_city = models.CharField(verbose_name="Event Location: City", max_length=100)
+    event_state = models.CharField(verbose_name="Event Location: State", max_length=100)
+
 
 class Comment(models.Model):
     comment_id = models.IntegerField(verbose_name="Comment ID", primary_key=True)
