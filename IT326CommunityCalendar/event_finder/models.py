@@ -41,5 +41,6 @@ class RSVP(models.Model):
     event_id = models.IntegerField(verbose_name="Event ID",foreign_key=True)
     user_id = models.IntegerField(verbose_name="Event ID", foreign_key=True)
     
+    
 
     
