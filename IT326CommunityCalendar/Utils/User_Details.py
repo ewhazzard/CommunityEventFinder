@@ -1,6 +1,5 @@
-
 class User_Details:
-    
+
     # List of strings. Each element is a hobby
     hobbies = []
     # List of strings. Each element is an interest
@@ -9,14 +8,13 @@ class User_Details:
     age = 0
     # String representation of Gender
     gender = ''
-    
-    def __init__ (self,hobbies,intrests,age, gender):
+
+    def __init__(self, hobbies, intrests, age, gender):
         self.hobbies = hobbies
         self.intrests = intrests
         self.age = age
         self.gender = gender
-        
-    
+
     def get_hobbies(self):
         return self.hobbies
 
@@ -32,11 +30,11 @@ class User_Details:
     def add_hobbies(self, hobbies_to_add):
         self.hobbies.extend(hobbies_to_add)
 
-    def set_age(self,age):
-        self.age=age
+    def set_age(self, age):
+        self.age = age
 
-    def set_intrests(self,intrests):
-        self.intrests=intrests
+    def set_intrests(self, intrests):
+        self.intrests = intrests
 
-    def set_gender(self,gender):
-        self.gender=gender
+    def set_gender(self, gender):
+        self.gender = gender
