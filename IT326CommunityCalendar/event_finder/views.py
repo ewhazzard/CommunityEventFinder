@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import CEFForm, LoginForm,CreateEvent
-from .models import Users
+from .models import Users, Event
 
 # Create your views here.
 def home(request):
-    return render(request, 'event_finder_base.html')
+    context = {'Events': Event.objects.all()}
+    return render(request, 'event_finder_base.html', context)
 
 def event_search(request):
     return render(request, 'event_search_page.html')
