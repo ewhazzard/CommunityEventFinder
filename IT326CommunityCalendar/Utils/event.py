@@ -1,56 +1,59 @@
 from RSVP import RSVP
 from comment import Comment
 from event_details import Event_Details
+from Location import Location
+from Contact_Info import Contact_Info
+
 
 class Event:
-    # Instance Variables
-    # Integer id unique to each event
-    event_id = 0
-    # Event Details object to describe the event
-    event_details = None
-    # Contact info object belonging to the Event
-    contact_info = None
-    # Id of the user who created the Event object
-    user_id = 0
-    # List of Comment objects that holds all the comments for the event
-    comments = []
-    # List of RSVP objects that holds RSVP information for the event
-    rsvps = []
-    
-    # Constructor
-    def __init__(self,event_id,contact_info,user_id):
-        self.event_id=event_id
-        self.contact_info=contact_info
-        self.user_id=user_id
-        self.comments=[]
-        self.rsvps=[]
-        
-    def get_event_id(self):
-        return self.event_id
-    
-    # Getter to return contact information object
-    def get_contact_info(self):
-        return self.contact_info
-    
-    # Getter for the Event Details object
-    def get_event_details(self):
-        return self.event_details
-    
-    # Setter for Event Details. Constructs an Event Details object
-    def set_event_details(self, title, description, location, city, date):
-        self.event_details = Event_Details(title, description, location, city, date)
-    
-    def get_details(self):
-        return self.event_details
+    def __init__(self, event_id, contact_info, user_id):
+        self.__event_id = event_id
+        self.__contact_info = contact_info
+        self.__user_id = user_id
+        self.comments = []
+        self.RSVPs = []
 
-    def add_RSVP(self,id):
-        pass
+    # def view_details(self,):
+    #     pass
+    def view_details(self):
+        detailsMessage = F"Name: {Event_Details.get_title}" + "\t" + \
+            F"Date: {Event_Details.get_date}" + "\n\t" + \
+            F"City: {Event_Details.get_city}" + "\n\t" + \
+            F"Location: {Event_Details.get_location}" + "\n\n" + \
+            F"Description: {Event_Details.get_description}" + "\n\n"
+        return detailsMessage
 
-    def add_comment(self,id):
-        pass
+    def add_RSVP(self, id):
+        rsvp = RSVP(RSVP.get_RSVP_date, RSVP.get_user_id)
 
-    def remove_RSVP(self,id):
-        pass
+    def add_comment(self, id, message):
+        # def __init__(self, content, comment_id, comment_date, user_id):
+        # Create new Comment object ?
+        # What should comment_id and user_id be?
+        c = Comment(message, Comment.get_date, 0)
+        c.set_content(message)
 
-    def remove_comment(self,id): 
+    def remove_RSVP(self, id):
         pass
+        # Remove same RSVP object
+
+    def remove_comment(self, id):
+        pass
+        # Remove same Comment object
+
+    def create_event_details(self, event_id, user_id, comments, event_details, rsvps):
+        # Needs locaiton, contactInfo, and eventDetails
+        loc = Location.get_city + "\n" + Location.get_street + \
+            "\n" + Location.get_city + "\n" + Location.get_zipcode
+
+        contactInfo = Contact_Info.get_first_name + " " + Contact_Info.get_last_name + "\n" + \
+            Contact_Info.get_email + "\n" + Contact_Info.get_location + \
+            "\n" + Contact_Info.get_phone
+
+        eventDetails = Event.view_details(self)
+
+        event_details_obj = Event_Details(
+            loc, contactInfo, eventDetails)
+
+        # Return it?
+        # return event_details_obj
