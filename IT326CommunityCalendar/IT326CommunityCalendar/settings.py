@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'IT326CommunityCalendar.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'CommunityEventFinderDB',
+        'NAME': 'cefdb',
         'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'EHazzard_Laptop_MSI',
+        'PASSWORD': 'rootuser',
+        'HOST': 'localhost',
         'PORT': '3306'
     }
 }
