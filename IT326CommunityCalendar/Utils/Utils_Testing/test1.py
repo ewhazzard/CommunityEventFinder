@@ -70,8 +70,8 @@ def test_event_with_city_of_interest():
     list.append(event1)
     list.append(event2)
 
-    assert list[0].get_event_details().get_contact_into().get_location().get_city() == "Chicago"
-    assert list[1].get_event_details().get_contact_into().get_location().get_city() != "Chicago"
+    assert list[0].get_event_details().get_contact_into().get_location().get_city() != "Chicago"
+    assert list[1].get_event_details().get_contact_into().get_location().get_city() == "Chicago"
 
     
 
