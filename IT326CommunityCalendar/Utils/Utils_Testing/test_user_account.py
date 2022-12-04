@@ -6,6 +6,7 @@ from Utils.User_Details import User_Details
 from Utils.Location import Location
 from Utils.event import Event
 from Utils.RSVP import RSVP
+from Utils.comment import Comment
 import datetime
 
 def test_user_details_creation():
@@ -34,3 +35,13 @@ def test_user_details_creation_retrieval():
     assert testUserAccount.get_user_details().get_age() == testUserDetails.get_age()
     assert testUserAccount.get_user_details().get_gender() == testUserDetails.get_gender()
     assert testUserAccount.get_user_details().get_interests() == testUserDetails.get_interests()
+
+def test_comment_creation():
+    testUserDetails = User_Details(["Fishing","Investing","Computer Programming"],["Religious Events","Computing Conventions"],21,"Male")
+    user=User_Account(2223, "John_Smith", "Snake_tooth99", testUserDetails)
+    contact_info=Contact_Info("John","Smith","john.smith@gmail.com","854-456-7891","Normal, IL")
+    event=Event(42387,contact_info,user.get_user_id)
+    main_function=user.initiate_comment(42387,"this is the comment")
+    test_comment=Comment("this is the comment",1,datetime.date.today,user.get_user_id())
+    assert test_comment.get_content() == main_function.get_content()
+    assert test_comment.get_date() == main_function.get_date()
