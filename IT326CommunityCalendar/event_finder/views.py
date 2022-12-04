@@ -2,11 +2,13 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import CEFForm, LoginForm,CreateEvent
 from .models import Users, Event
-from Utils import User_Account, User_Details
+from Utils import User_Account, User_Details, Contact_Info, Location
 
 # Global User Variable to have a persistent User account
-user_details = User_Details.User_Details(["soccer", "cars"], ["soccer", "racing"], 21, "Male")
-user = User_Account.User_Account(0, "ewhazza", "rootuser", user_details)
+# user_details = User_Details.User_Details(["soccer", "cars"], ["soccer", "racing"], 21, "Male")
+# user = User_Account.User_Account(0, "ewhazza", "rootuser", user_details)
+user = None
+user_contact = None
 
 # Create your views here.
 def home(request):
@@ -32,13 +34,20 @@ def login(request):
 
 def eventcreate(request):
     form = CreateEvent()
-    print(request.method)
     if request.method == 'GET':
-        form = CreateEvent(request.POST)
+        form = CreateEvent(request.POST, initial={'user_id': user.user_id, 
+                                                  'event_email': user_contact.email,
+                                                  'event_phone': user_contact.phone,
+                                                  'event_city': user_contact.city,
+                                                  'event_state': user_contact.state})
+        context = {
+            "form":form,
+            "user": user
+        }
         if form.is_valid():
             form.save()
             return redirect('home')
-    return render(request, 'create_event_form.html',{"form":form})
+    return render(request, 'create_event_form.html', context)
     
 def create_account(request):
     form = CEFForm()
@@ -59,9 +68,16 @@ def login(request):
         # get form object from user
         form = LoginForm(request.POST)
         # Try to Get User object from input
-        user = Users.objects.get(user_username = form['user_username'].value())
-        if user.user_username == form['user_username'].value():
-            return redirect('')
+        input_username = form['user_username'].value()
+        input_password = form['user_password'].value()
+        user_from_db = Users.objects.get(user_username = input_username)
+        print(user_from_db.user_username)
+        if user_from_db.user_password == input_password:
+            user_details = User_Details.User_Details(user_from_db.user_hobbies, user_from_db.user_interests, user_from_db.user_age, user_from_db.user_gender)
+            user_location = Location.Location(user_from_db.user_street, user_from_db.user_city, user_from_db.user_state, user_from_db.user_zipcode)
+            user_contact = Contact_Info.Contact_Info(user_from_db.user_fname, user_from_db.user_lname, user_from_db.user_email, user_from_db.user_phone, user_location)
+            user = User_Account.User_Account(user_from_db.user_id, user_from_db.user_username, user_from_db.user_password, user_details)
+            return redirect(home) 
         else:
             pass
             # Handle incorrect Login

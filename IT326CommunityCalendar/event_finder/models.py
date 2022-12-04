@@ -23,6 +23,8 @@ class Users(models.Model):
     user_gender = models.CharField(verbose_name="Gender", choices = GENDER_CHOICES, max_length=25)
     user_city = models.CharField(verbose_name="Location: City", max_length=100)
     user_state = models.CharField(verbose_name="Location: State", max_length=100)
+    user_street = models.CharField(verbose_name="Location: Street", max_length=100)
+    user_zipcode = models.IntegerField(verbose_name="Location: Zipcode")
     user_admin = models.BooleanField(verbose_name="Is Admin")
     
     def __str__(self):
