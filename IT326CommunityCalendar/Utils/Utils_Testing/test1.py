@@ -49,5 +49,29 @@ def test_user_details_creation_retrieval():
     assert testUserAccount.get_user_details().get_gender() == testUserDetails.get_gender()
     assert testUserAccount.get_user_details().get_intrests() == testUserDetails.get_intrests()
 
+"""
+Testing part of the functionality for requirement 3.1.15 (Search for city of interest). User searches for the city "Chicago".
+"""
+def test_event_with_city_of_interest():
+    location1 = Location("23 Blackberry St","Normal","IL",61606)
+    location2 = Location("123 Easy Street", "Chicago", "Illinois", 60123)
 
+    contactInfo1 = Contact_Info("Dan","Smith","dsmith@ilstu.edu","318-329-2930",location1)
+    contactInfo2 = Contact_Info("Dan","Smith","dsmith@ilstu.edu","318-329-2930",location2)
+
+    eventDetails1 = Event_Details("Neighborhood Party","Fun Social Event",contactInfo1,datetime.date(2022,5,10))
+    eventDetails2 = Event_Details("Gathering", "Casual Event", contactInfo2, datetime.date(2022,6,13))
+
+    event1 = Event("1234", eventDetails1, "5555")
+    event2 = Event("9992", eventDetails2, "1222")
+
+    list = []
+
+    list.append(event1)
+    list.append(event2)
+
+    assert list[0].get_event_details().get_contact_into().get_location().get_city() == "Chicago"
+    assert list[1].get_event_details().get_contact_into().get_location().get_city() != "Chicago"
+
+    
 
