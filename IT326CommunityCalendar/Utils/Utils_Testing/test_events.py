@@ -40,14 +40,7 @@ def test_event_location_info_creation_retrieval():
     assert testEvent.get_event_details().get_contact_info().get_location().get_state() == testLocation.get_state()
     assert testEvent.get_event_details().get_contact_info().get_location().get_zipcode() == testLocation.get_zipcode()
 
-def test_user_details_creation_retrieval():
-    testUserDetails = User_Details(["Fishing","Investing","Computer Programming"],["Religious Events","Computing Conventions"],21,"Male")
-    testUserAccount = User_Account(1111,"dsmith123","password$",testUserDetails)
 
-    assert testUserAccount.get_user_details().get_hobbies() == testUserDetails.get_hobbies()
-    assert testUserAccount.get_user_details().get_age() == testUserDetails.get_age()
-    assert testUserAccount.get_user_details().get_gender() == testUserDetails.get_gender()
-    assert testUserAccount.get_user_details().get_interests() == testUserDetails.get_intrests()
 
 """
 Testing part of the functionality for requirement 3.1.15 (Search for city of interest). User searches for the city "Chicago".
@@ -62,8 +55,8 @@ def test_event_with_city_of_interest():
     eventDetails1 = Event_Details("Neighborhood Party","Fun Social Event",contactInfo1,datetime.date(2022,5,10))
     eventDetails2 = Event_Details("Gathering", "Casual Event", contactInfo2, datetime.date(2022,6,13))
 
-    event1 = Event("1234", eventDetails1, "5555")
-    event2 = Event("9992", eventDetails2, "1222")
+    event1 = Event("1234", "5555",eventDetails1)
+    event2 = Event("9992", "1222",eventDetails2)
 
     list = []
 
