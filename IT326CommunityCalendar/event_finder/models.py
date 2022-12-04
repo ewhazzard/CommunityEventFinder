@@ -24,11 +24,14 @@ class Users(models.Model):
     user_city = models.CharField(verbose_name="Location: City", max_length=100)
     user_state = models.CharField(verbose_name="Location: State", max_length=100)
     user_admin = models.BooleanField(verbose_name="Is Admin")
+    
+    def __str__(self):
+        return self.user_username
   
 
 class Event(models.Model):  
     event_id = models.IntegerField(verbose_name="Event ID", primary_key=True)
-    user_id = models.ForeignKey(Users, on_delete = models.CASCADE, verbose_name="Event ID")
+    user_id = models.ForeignKey(Users, on_delete = models.CASCADE, verbose_name="OrganizerID")
     event_title = models.CharField(verbose_name="Event Title", max_length=50)
     event_description = models.CharField(verbose_name="Event Description",max_length=256)
     event_date = models.DateTimeField(verbose_name="Event Date")
