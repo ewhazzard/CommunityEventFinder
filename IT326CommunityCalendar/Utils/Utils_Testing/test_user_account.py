@@ -25,3 +25,12 @@ def test_RSVP_creation():
     rsvp_test=RSVP(user.get_user_id,datetime.date.today)
     assert rsvp_test.get_user_id == main_function.get_user_id
     assert rsvp_test.get_RSVP_date == main_function.get_RSVP_date
+
+def test_user_details_creation_retrieval():
+    testUserDetails = User_Details(["Fishing","Investing","Computer Programming"],["Religious Events","Computing Conventions"],21,"Male")
+    testUserAccount = User_Account(1111,"dsmith123","password$",testUserDetails)
+
+    assert testUserAccount.get_user_details().get_hobbies() == testUserDetails.get_hobbies()
+    assert testUserAccount.get_user_details().get_age() == testUserDetails.get_age()
+    assert testUserAccount.get_user_details().get_gender() == testUserDetails.get_gender()
+    assert testUserAccount.get_user_details().get_interests() == testUserDetails.get_interests()
