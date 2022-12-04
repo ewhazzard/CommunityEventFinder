@@ -47,7 +47,7 @@ def test_user_details_creation_retrieval():
     assert testUserAccount.get_user_details().get_hobbies() == testUserDetails.get_hobbies()
     assert testUserAccount.get_user_details().get_age() == testUserDetails.get_age()
     assert testUserAccount.get_user_details().get_gender() == testUserDetails.get_gender()
-    assert testUserAccount.get_user_details().get_intrests() == testUserDetails.get_intrests()
+    assert testUserAccount.get_user_details().get_interests() == testUserDetails.get_intrests()
 
 """
 Testing part of the functionality for requirement 3.1.15 (Search for city of interest). User searches for the city "Chicago".

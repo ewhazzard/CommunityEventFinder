@@ -21,7 +21,7 @@ class User_Details:
     def get_age(self):
         return self.age
 
-    def get_intrests(self):
+    def get_interests(self):
         return self.intrests
 
     def get_gender(self):
