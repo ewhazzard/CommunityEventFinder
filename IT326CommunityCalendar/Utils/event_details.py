@@ -1,9 +1,9 @@
+from Contact_Info import Contact_Info
 class Event_Details:
-    def __init__(self, event_title, event_description, event_location, event_city, event_date):
+    def __init__(self, event_title, event_description, event_contact_info,event_date):
         self.__event_title = event_title
         self.__event_description = event_description
-        self.__event_location = event_location
-        self.__event_city = event_city
+        self.__event_contact_info = event_contact_info
         self.__event_date = event_date
 
     def get_date(self):
@@ -12,14 +12,11 @@ class Event_Details:
     def get_description(self):
         return self.__event_description
 
-    def get_city(self):
-        return self.__event_city
-
     def get_title(self):
         return self.__event_title
 
-    def get_location(self):
-        return self.__event_location
+    def get_contact_info(self):
+        return self.__event_contact_info
 
     def set_title(self, title):
         self.__event_title = title

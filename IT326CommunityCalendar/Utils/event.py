@@ -6,9 +6,9 @@ from Contact_Info import Contact_Info
 
 
 class Event:
-    def __init__(self, event_id, contact_info, user_id):
+    def __init__(self, event_id, event_details, user_id):
         self.__event_id = event_id
-        self.__contact_info = contact_info
+        self.__event_details = event_details
         self.__user_id = user_id
         self.comments = []
         self.RSVPs = []
@@ -23,6 +23,9 @@ class Event:
             F"Description: {Event_Details.get_description}" + "\n\n"
         return detailsMessage
 
+    def get_event_details(self):
+        return self.__event_details
+        
     def add_RSVP(self, id):
         rsvp = RSVP(RSVP.get_RSVP_date, RSVP.get_user_id)
 
