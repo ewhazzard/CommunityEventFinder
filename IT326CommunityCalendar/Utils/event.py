@@ -6,15 +6,27 @@ from Utils.Contact_Info import Contact_Info
 
 
 class Event:
-    def __init__(self, event_id, event_details, user_id):
-        self.__event_id = event_id
-        self.__event_details = event_details
-        self.__user_id = user_id
-        self.comments = []
-        self.RSVPs = []
-
-    # def view_details(self,):
-    #     pass
+    # Instance Variables
+    # Integer id unique to each event
+    event_id = 0
+    # Event Details object to describe the event
+    event_details = None
+    # Contact info object belonging to the Event
+    contact_info = None
+    # Id of the user who created the Event object
+    user_id = 0
+    # List of Comment objects that holds all the comments for the event
+    comments = []
+    # List of RSVP objects that holds RSVP information for the event
+    rsvps = []
+    
+    def __init__(self,event_id,contact_info,user_id):
+        self.event_id=event_id
+        self.contact_info=contact_info
+        self.user_id=user_id
+        self.comments=[]
+        self.rsvps=[]
+    
     def view_details(self):
         detailsMessage = F"Name: {Event_Details.get_title}" + "\t" + \
             F"Date: {Event_Details.get_date}" + "\n\t" + \
@@ -25,7 +37,11 @@ class Event:
 
     def get_event_details(self):
         return self.__event_details
-
+    
+    # Setter for Event Details. Constructs an Event Details object
+    def set_event_details(self, title, description, location, city, date):
+        self.event_details = Event_Details(title, description, location, city, date)
+        
     def add_RSVP(self, id):
         rsvp = RSVP(RSVP.get_RSVP_date, RSVP.get_user_id)
 
