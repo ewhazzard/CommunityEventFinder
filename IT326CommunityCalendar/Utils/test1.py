@@ -1,7 +1,5 @@
 import pytest
 
-
-
 from event import Event
 from Contact_Info import Contact_Info
 from event_details import Event_Details
