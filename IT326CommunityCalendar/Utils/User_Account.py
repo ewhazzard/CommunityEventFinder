@@ -46,6 +46,9 @@ class User_Account:
     def customize_account(self, age, gender, interests, hobbies):
         self.user_details = User_Details(age, gender, interests, hobbies)
 
+    def get_user_details(self):
+        return self.user_details
+        
     def get_username(self):
         return self.user_name
 
