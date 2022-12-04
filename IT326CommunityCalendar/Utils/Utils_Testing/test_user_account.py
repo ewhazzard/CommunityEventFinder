@@ -14,4 +14,8 @@ def test_user_details_creation():
     assert testUserDetails.get_gender == "Boy"
     assert testUserDetails.get_hobbies==["Soccer","Golf","Running","Swimming"]
     assert testUserDetails.get_intrests==["Computer Science","Math","Physics"]
-    
+
+def test_RSVP_creation():
+    testUserDetails = User_Details(["Soccer","Golf","Running","Swimming"],["Computer Science","Math","Physics"],19,"Boy")
+    user=User_Account(2223, "John_Smith", "Snake_tooth99", testUserDetails)
+    user.initiate_RSVP()

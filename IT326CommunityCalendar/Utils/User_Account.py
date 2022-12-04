@@ -35,11 +35,11 @@ class User_Account:
     def log_out(self):
         pass
 
-    def initiate_RSVP(self):
+    def initiate_RSVP(self,event_id):
         
         pass
 
-    def initiate_comment(self):
+    def initiate_comment(self,event_id,content):
         pass
     # Pass in the age, gender, interests, and hobbies for a user
     # and create a User_Details object with that information
@@ -67,3 +67,5 @@ class User_Account:
 
     def add_event(self):
         pass
+    def get_user_id(self):
+        return self.user_id
