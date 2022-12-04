@@ -21,6 +21,7 @@ def test_RSVP_creation():
     user=User_Account(2223, "John_Smith", "Snake_tooth99", testUserDetails)
     contact_info=Contact_Info("John","Smith","john.smith@gmail.com","854-456-7891","Normal, IL")
     event=Event(42387,contact_info,user.get_user_id)
-    user.initiate_RSVP(42387)
+    main_function=user.initiate_RSVP(42387)
     rsvp_test=RSVP(user.get_user_id,datetime.date.today)
-    assert 
+    assert rsvp_test.get_user_id == main_function.get_user_id
+    assert rsvp_test.get_RSVP_date == main_function.get_RSVP_date
