@@ -1,4 +1,4 @@
-from User_Details import User_Details
+from Utils.User_Details import User_Details
 
 
 class User_Account:
@@ -48,7 +48,7 @@ class User_Account:
 
     def get_user_details(self):
         return self.user_details
-        
+
     def get_username(self):
         return self.user_name
 

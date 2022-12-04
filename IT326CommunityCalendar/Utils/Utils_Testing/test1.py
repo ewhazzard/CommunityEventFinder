@@ -1,11 +1,11 @@
 import pytest
 
-from event import Event
-from Contact_Info import Contact_Info
-from event_details import Event_Details
-from Location import Location
-from User_Details import User_Details
-from User_Account import User_Account
+from Utils.event import Event
+from Utils.Contact_Info import Contact_Info
+from Utils.event_details import Event_Details
+from Utils.Location import Location
+from Utils.User_Details import User_Details
+from Utils.User_Account import User_Account
 import datetime
 
 

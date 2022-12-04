@@ -1,4 +1,4 @@
-from Contact_Info import Contact_Info
+from Utils.Contact_Info import Contact_Info
 class Event_Details:
     def __init__(self, event_title, event_description, event_contact_info,event_date):
         self.__event_title = event_title
