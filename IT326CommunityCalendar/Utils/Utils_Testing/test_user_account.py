@@ -5,6 +5,7 @@ from Utils.Contact_Info import Contact_Info
 from Utils.User_Details import User_Details
 from Utils.Location import Location
 from Utils.event import Event
+from Utils.RSVP import RSVP
 import datetime
 
 def test_user_details_creation():
@@ -18,4 +19,8 @@ def test_user_details_creation():
 def test_RSVP_creation():
     testUserDetails = User_Details(["Soccer","Golf","Running","Swimming"],["Computer Science","Math","Physics"],19,"Boy")
     user=User_Account(2223, "John_Smith", "Snake_tooth99", testUserDetails)
-    user.initiate_RSVP()
+    contact_info=Contact_Info("John","Smith","john.smith@gmail.com","854-456-7891","Normal, IL")
+    event=Event(42387,contact_info,user.get_user_id)
+    user.initiate_RSVP(42387)
+    rsvp_test=RSVP(user.get_user_id,datetime.date.today)
+    assert 
