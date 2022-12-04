@@ -5,7 +5,7 @@ from .models import Users, Event
 
 # Create your views here.
 def home(request):
-    lastest_events_list = Event.objects.all().order_by('event_date').values()
+    lastest_events_list = Event.objects.all().order_by('-event_date').values()
     context = {
         'query' : lastest_events_list,
         'new' : True,
@@ -25,14 +25,13 @@ def login(request):
     return render(request, 'login_page.html')
 
 def eventcreate(request):
-    if request.method == "POST":
+    form = CreateEvent()
+    print(request.method)
+    if request.method == 'GET':
         form = CreateEvent(request.POST)
-
         if form.is_valid():
             form.save()
             return redirect('home')
-    else:
-        form = CreateEvent()
     return render(request, 'create_event_form.html',{"form":form})
     
 def create_account(request):
