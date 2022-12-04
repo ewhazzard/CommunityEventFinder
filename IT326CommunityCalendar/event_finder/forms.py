@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, widgets
-from .models import Users
+from .models import Users, Event
 
 class CEFForm(ModelForm):
     class Meta:
@@ -16,5 +16,7 @@ class LoginForm(ModelForm):
         fields = ['user_username', 'user_password']
 
 
-class CreateEvent(forms.Form):
-    name = forms.CharField(label="name",max_length=200)
+class CreateEvent(ModelForm):
+     class Meta:
+        model = Event
+        fields = '__all__'
