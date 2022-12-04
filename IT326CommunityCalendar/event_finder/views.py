@@ -2,12 +2,18 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import CEFForm, LoginForm,CreateEvent
 from .models import Users, Event
+from Utils import User_Account, User_Details
+
+# Global User Variable to have a persistent User account
+user_details = User_Details.User_Details(["soccer", "cars"], ["soccer", "racing"], 21, "Male")
+user = User_Account.User_Account(0, "ewhazza", "rootuser", user_details)
 
 # Create your views here.
 def home(request):
     lastest_events_list = Event.objects.all().order_by('-event_date').values()
     context = {
         'query' : lastest_events_list,
+        'user' : user,
         'new' : True,
         'newaddress' : 'eventcreate/',
         'delete': True,

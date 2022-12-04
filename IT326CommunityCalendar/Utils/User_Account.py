@@ -22,6 +22,9 @@ class User_Account:
         self.user_name = user_name
         self.password = password
         self.user_details = user_details
+        
+    def __str__(self) -> str:
+        return self.user_name
 
     # Not sure we need this functionality here. Probably should be handled purely in the Django class
     def delete_account(self):
