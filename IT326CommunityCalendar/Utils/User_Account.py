@@ -1,4 +1,4 @@
-from IT326CommunityCalendar.Utils.User_Details import User_Details
+from User_Details import User_Details
 
 
 class User_Account:
@@ -17,10 +17,11 @@ class User_Account:
     contact_information = None
 
     # Constructor
-    def __init__(self, user_id, user_name, password):
+    def __init__(self, user_id, user_name, password, user_details):
         self.user_id = user_id
         self.user_name = user_name
         self.password = password
+        self.user_details = user_details
 
     # Not sure we need this functionality here. Probably should be handled purely in the Django class
     def delete_account(self):

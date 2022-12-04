@@ -1,12 +1,12 @@
 from Location import Location
 
 class Contact_Info:
-    def __init__(self,first_name,last_name,email,phone):
+    def __init__(self,first_name,last_name,email,phone,location):
         self.first_name=first_name
         self.last_name=last_name
         self.email=email
         self.phone=phone
-        self.loc=Location("","","",0)
+        self.location = location
     
     def set_location(self,street,city,state,zipcode):
         self.loc.set_street(street)
@@ -15,8 +15,7 @@ class Contact_Info:
         self.loc.set_zip(zipcode)
 
     def get_location(self):
-        location=self.loc.get_street()+" "+ self.loc.get_city()+" "+self.loc.get_state()+" "+self.loc.get_zipcode()
-        return location
+        return self.location
 
     def get_first_name(self):
         return self.first_name
