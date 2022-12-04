@@ -12,7 +12,7 @@ import datetime
 
 def test_event_details_creation_retrieval():
     testEventDetails = Event_Details("Neighborhood Party","Fun Social Event",Contact_Info("","","","",Location("","","",0)),datetime.date(2022,5,10))
-    testEvent = Event("1111",testEventDetails,"2222")
+    testEvent = Event("1111","2222",testEventDetails)
 
     assert testEvent.get_event_details().get_date() == testEventDetails.get_date()
     assert testEvent.get_event_details().get_description() == testEventDetails.get_description()
@@ -22,7 +22,7 @@ def test_event_details_creation_retrieval():
 def test_event_contact_info_creation_retrieval():
     testContact = Contact_Info("Dan","Smith","dsmith@ilstu.edu","318-329-2930",Location("","","",0))
     testEventDetails = Event_Details("Neighborhood Party","Fun Social Event",testContact,datetime.date(2022,5,10))
-    testEvent = Event("1111",testEventDetails,"2222")
+    testEvent = Event("1111","2222",testEventDetails)
 
     assert testEvent.get_event_details().get_contact_info().get_first_name() == testContact.get_first_name()
     assert testEvent.get_event_details().get_contact_info().get_last_name() == testContact.get_last_name()
@@ -33,7 +33,7 @@ def test_event_location_info_creation_retrieval():
     testLocation = Location("23 Blackberry St","Normal","IL",61606)
     testContact = Contact_Info("Dan","Smith","dsmith@ilstu.edu","318-329-2930",testLocation)
     testEventDetails = Event_Details("Neighborhood Party","Fun Social Event",testContact,datetime.date(2022,5,10))
-    testEvent = Event("1111",testEventDetails,"2222")
+    testEvent = Event("1111","2222",testEventDetails)
 
     assert testEvent.get_event_details().get_contact_info().get_location().get_street() == testLocation.get_street()
     assert testEvent.get_event_details().get_contact_info().get_location().get_city() == testLocation.get_city()
