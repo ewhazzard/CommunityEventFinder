@@ -5,7 +5,14 @@ from .models import Users, Event
 
 # Create your views here.
 def home(request):
-    context = {'Events': Event.objects.all()}
+    lastest_events_list = Event.objects.all().order_by('event_date').values()
+    context = {
+        'query' : lastest_events_list,
+        'new' : True,
+        'newaddress' : 'eventcreate/',
+        'delete': True,
+        'deleteaddress': 'delete_event'
+    }
     return render(request, 'event_finder_base.html', context)
 
 def event_search(request):

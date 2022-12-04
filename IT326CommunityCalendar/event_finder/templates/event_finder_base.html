@@ -23,9 +23,48 @@
         </nav>
         <h1 id="main_header">Community Event Finder</h1>
         <h1 id="top_header_body">Welcome to the Community Event Finder Home-Page</h1>
-        <a href="{% url 'eventcreatepage' %}"><button id="create_event_button" class="btn btn-primary">Create an Event</button></a>
-        
-        <div id="upcoming_events_section">
+
+        {%block contents%}
+            <div class = "row">
+                <div class = "col-sm-12">
+                    <div class = "table-responsive">
+                        <table id = "EventTable" class = table table-striped>
+                            <thead>
+                                
+                                <th>Event Id</th>
+                                <th>User Id</th>
+                                <th>Event Title</th>
+                                <th>Event Description<th>
+                            </thead>
+                            <tbody>
+                                {% for row in  query %}
+                                <tr>
+                                    {% for item in row.values  %}
+                                        {% if forloop.counter == 1 %}
+                                        {% elif forloop.counter == 2%}
+                                            <td><a href="{{ request.get_path }}{{ row.id }}/">{{item.event_title}}</a></td>
+                                        {% else %}
+                                            <td>{{item}}</td>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if delete %}
+                                        <td><button class = "btn waves-effect waves-list btn-info" onclick="location.href='{{deleteaddress}}{{row.id}}'">Delete Event</button></td>
+                                    {% endif %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <th>
+                                    {% if new %}
+                                        <button class = "btn waves-effect waves-list btn-info" onclick="location.href='{{newaddress}}'"> Create New Event</button>
+                                    {% endif %}
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>   
+        {%endblock contents%}
+        {% comment %} <div id="upcoming_events_section">
             <!-- Here we are using attributes like
                 cellspacing and cellpadding -->
 
@@ -118,6 +157,6 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div> {% endcomment %}
     </body>
 </html>

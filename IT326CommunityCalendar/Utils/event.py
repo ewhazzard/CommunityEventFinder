@@ -36,7 +36,7 @@ class Event:
         return detailsMessage
 
     def get_event_details(self):
-        return self.__event_details
+        return self.event_details
     
     # Setter for Event Details. Constructs an Event Details object
     def set_event_details(self, title, description, location, city, date):
