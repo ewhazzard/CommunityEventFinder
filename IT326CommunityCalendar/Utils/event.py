@@ -20,13 +20,12 @@ class Event:
     # List of RSVP objects that holds RSVP information for the event
     rsvps = []
     
-    def __init__(self,event_id,contact_info,user_id,event_details):
+    def __init__(self,event_id,contact_info,user_id, event_details):
         self.event_id=event_id
         self.contact_info=contact_info
         self.user_id=user_id
         self.comments=[]
         self.rsvps=[]
-        self.event_details = event_details
     
     def view_details(self):
         detailsMessage = F"Name: {Event_Details.get_title}" + "\t" + \
