@@ -1,8 +1,8 @@
-from RSVP import RSVP
-from comment import Comment
-from event_details import Event_Details
-from Location import Location
-from Contact_Info import Contact_Info
+from Utils.RSVP import RSVP
+from Utils.comment import Comment
+from Utils.event_details import Event_Details
+from Utils.Location import Location
+from Utils.Contact_Info import Contact_Info
 
 
 class Event:
@@ -25,7 +25,7 @@ class Event:
 
     def get_event_details(self):
         return self.__event_details
-        
+
     def add_RSVP(self, id):
         rsvp = RSVP(RSVP.get_RSVP_date, RSVP.get_user_id)
 

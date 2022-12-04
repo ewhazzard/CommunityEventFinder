@@ -1,4 +1,4 @@
-from Location import Location
+from Utils.Location import Location
 
 class Contact_Info:
     def __init__(self,first_name,last_name,email,phone,location):
