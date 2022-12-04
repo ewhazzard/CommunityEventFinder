@@ -11,12 +11,6 @@ from User_Account import User_Account
 import datetime
 
 
-def test_example():
-    assert 1 == 1
-
-def test_example2():
-    assert 2 == 2
-
 def test_event_details_creation_retrieval():
     testEventDetails = Event_Details("Neighborhood Party","Fun Social Event",Contact_Info("","","","",Location("","","",0)),datetime.date(2022,5,10))
     testEvent = Event("1111",testEventDetails,"2222")
