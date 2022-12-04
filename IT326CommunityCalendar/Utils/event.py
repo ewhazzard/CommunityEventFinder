@@ -11,8 +11,6 @@ class Event:
     event_id = 0
     # Event Details object to describe the event
     event_details = None
-    # Contact info object belonging to the Event
-    contact_info = None
     # Id of the user who created the Event object
     user_id = 0
     # List of Comment objects that holds all the comments for the event
@@ -20,9 +18,8 @@ class Event:
     # List of RSVP objects that holds RSVP information for the event
     rsvps = []
     
-    def __init__(self,event_id,contact_info,user_id, event_details):
+    def __init__(self,event_id,user_id, event_details):
         self.event_id=event_id
-        self.contact_info=contact_info
         self.user_id=user_id
         self.comments=[]
         self.rsvps=[]
