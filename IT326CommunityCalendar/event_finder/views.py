@@ -34,9 +34,11 @@ def profile(request):
     user_events = Event.objects.get(user_id=user.get_user_id())
     context = {
         'query' : user_events,
-        'user' : user
+        'user' : user,
+        'new' : True,
+        'newaddress' : 'eventcreate/'
     }
-    return render(request, 'profile_page.html')
+    return render(request, 'profile_page.html',context)
 
 def eventcreate(request):
     data = {'user_id': user.user_id, 
