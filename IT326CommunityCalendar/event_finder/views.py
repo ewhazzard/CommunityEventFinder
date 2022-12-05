@@ -147,7 +147,7 @@ def add_comment(request, event_id):
             form.save()
             # Return control to home page after form submission
             return redirect(home)
-    context = {'form': form}
+    context = {'form': form, 'user': user}
     return render(request, 'add_comment.html', context)
 
 def rsvp_to_event(request, event_id):

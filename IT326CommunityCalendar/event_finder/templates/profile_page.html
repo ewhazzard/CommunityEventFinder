@@ -23,6 +23,7 @@
             </div>
         </nav>
         <h1 id="main_header">{{user}}'s Profile</h1>
+        <h2>Events Created</h2>
         {%block contents%}
             <div class="row">
                 <div class="col-sm-12">
@@ -61,7 +62,7 @@
                             </tbody>
                         </table>
 
-                        <h1>Events with Outstanding RSVPs</h1>
+                        <h2>Events with Outstanding RSVPs</h2>
                         <table class="table">
                             <thead class="thead-dark">
                                 {% for row in event_query %}
