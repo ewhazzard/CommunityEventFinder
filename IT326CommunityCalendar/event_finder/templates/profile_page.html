@@ -23,6 +23,45 @@
             </div>
         </nav>
         <h1 id="main_header">{{user}}'s Profile</h1>
+        <h2>Profile Information</h2>
+        {%block contents%}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                        <th scope="col">User ID</th>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Age</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Hobbies</th>
+                                        <th scope="col">Interests</th>
+                                        <th scope="col">City</th>
+                                        <th scope="col">State</th>
+                                        <th scope="col">ZIP Code</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{user_query.user_id}}</td>
+                                    <td>{{user_query.user_username}}</td>
+                                    <td>{{user_query.user_fname}}</td>
+                                    <td>{{user_query.user_lname}}</td>
+                                    <td>{{user_query.user_age}}</td>
+                                    <td>{{user_query.user_phone}}</td>
+                                    <td>{{user_query.user_hobbies}}</td>
+                                    <td>{{user_query.user_interests}}</td>
+                                    <td>{{user_query.user_city}}</td>
+                                    <td>{{user_query.user_state}}</td>
+                                    <td>{{user_query.user_zipcode}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>   
+        {%endblock contents%}
         <h2>Events Created</h2>
         {%block contents%}
             <div class="row">
