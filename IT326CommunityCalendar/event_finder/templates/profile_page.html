@@ -18,7 +18,7 @@
                 <a class="nav-item custom-nav-item" href="{% url 'profilepage' %}">Profile</a>
                 {% if user %}
                     <a class="nav-item custom-nav-item">{{user}}</a>
-                    {% comment %} <a class="nav-item custom-nav-item" href="{% url 'logout' %}">Login</a> {% endcomment %}
+                    <a class="nav-item custom-nav-item" href="{% url 'logout' %}">Logout</a>
                 {% endif %}
             </div>
         </nav>
@@ -29,9 +29,9 @@
                     <div class="table-responsive">
                         <table class="table">
                             <thead class="thead-dark">
-                                {% for row in query %}
+                                {% for row in event_query %}
                                     {% if forloop.first %}
-                                        <th scope="col">Event ID<th>
+                                        <th scope="col">Event ID</th>
                                         <th scope="col">Event Title</th>
                                         <th scope="col">User Description</th>
                                         <th scope="col">Event Date</th>
@@ -41,18 +41,17 @@
                                         <th scope="col">Organizer Phone Number</th>
                                         <th scope="col">Event City</th>
                                         <th scope="col">Event State</th>
-                                        <th scope="col"></th>
                                     {% endif %}
                                 {% endfor %}
 
                             </thead>
                             <tbody>
-                                {% for row in  query %}
+                                {% for row in  event_query%}
                                 <tr>
                                     {% for item in row.values  %}
                                         {% if forloop.counter == 2%}
                                         {% elif forloop.counter == 3%}
-                                            <td scope="row"><a href="{{ request.get_path }}{{ row.event_id }}/">{{item}}</a></td>
+                                            <td scope="row"><a href="{{ request.get_path }}{{ row.event_id }}/">{{item}}</a></td>                                            
                                         {% else %}
                                             <td>{{item}}</td>
                                         {% endif %}
@@ -60,12 +59,35 @@
                                 </tr>
                                 {% endfor %}
                             </tbody>
-                            <tfoot>
-                                <th>
-                                    {% if new %}
-                                        <button type="button" class="btn waves-effect waves-list btn-info" onclick="location.href='{{newaddress}}'"> Create New Event</button>
+                        </table>
+
+                        <h1>Events with Outstanding RSVPs</h1>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                {% for row in event_query %}
+                                    {% if forloop.first %}
+                                        <th scope="col">RSVP ID</th>
+                                        <th scope="col">Event ID</th>
+                                        <th scope="col">RSVP Date</th>
+                                        <th scope="col">User ID</th>
+                                        <th></th>
                                     {% endif %}
-                            </tfoot>
+                                {% endfor %}
+
+                            </thead>
+                            <tbody>
+                                {% for row in  rsvp_query %}
+                                <tr>
+                                    {% for item in row.values  %}
+                                        <td>{{item}}</td>
+                                        {% if forloop.counter == 4 %}
+                                            <td scope="row"><a href="{{request.get_path}}deletersvp/{{row.rsvp_id}}">Delete RSVP</a>
+                                        {% endif %}
+                                    {% endfor %}
+                                    
+                                </tr>
+                                {% endfor %}
+                            </tbody>
                         </table>
                     </div>
                 </div>

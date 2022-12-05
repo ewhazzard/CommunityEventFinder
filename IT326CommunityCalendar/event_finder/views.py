@@ -30,8 +30,10 @@ def event_search(request):
 
 def profile(request):
     user_events = Event.objects.filter(user_id=user.user_id).values()
+    user_rsvps = RSVP.objects.filter(user_id=user.user_id).values()
     context = {
-        'query' : user_events,
+        'event_query' : user_events,
+        'rsvp_query': user_rsvps,
         'user' : user,
         'new' : True,
         'newaddress' : 'eventcreate/'
@@ -151,7 +153,8 @@ def add_comment(request, event_id):
 def rsvp_to_event(request, event_id):
     event_object = Event.objects.get(event_id=event_id)
     data = {'user_id': event_object.user_id, 
-            'event_id': event_object.event_id}
+            'event_id': event_object.event_id,
+            'rsvp_date': date.today()}
     form = RSVPForm(initial = data)
     if request.method == 'POST':
         # Add the request to a Users object
@@ -170,3 +173,7 @@ def logout(request):
     user_contact = None
     return redirect(home)
         
+def delete_rsvp(request, rsvp_id):
+    RSVP.objects.get(rsvp_id=rsvp_id).delete()
+    return redirect(home)
+    
