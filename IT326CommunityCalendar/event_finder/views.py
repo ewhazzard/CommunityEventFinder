@@ -118,17 +118,17 @@ def update_event(request, event_id):
 
 def event_landing_page(request, event_id):
     event_object = Event.objects.get(event_id=event_id)
-    # comments_object = Comment.objects.get(event_id=event_id)
-    # rsvp_object = RSVP.objects.get(event_id=event_id)
+    comments_object = Comment.objects.filter(event_id=event_id)
+    rsvp_object = RSVP.objects.filter(event_id=event_id)
     context = {
         'event_query' : event_object,
         'user' : user,
         'new' : True,
         'newcommentaddress': "comment",
-        # 'comment_query': comments_object,
+        'comment_query': comments_object,
         'RSVP': True,
         'rsvpaddress': "rsvp",
-        # 'rsvp_query': rsvp_object
+        'rsvp_query': rsvp_object
     }
     return render(request, 'event_landing_page.html', context)
 

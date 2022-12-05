@@ -51,6 +51,7 @@ class Comment(models.Model):
     comment_id = models.IntegerField(verbose_name="Comment ID", primary_key=True)
     event_id = models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name="Event ID")
     user_id = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name="User ID")
+    comment_string = models.TextField(verbose_name="Comment")
 
 class RSVP(models.Model):
     rsvp_id = models.IntegerField(verbose_name="RSVP ID",primary_key=True)
