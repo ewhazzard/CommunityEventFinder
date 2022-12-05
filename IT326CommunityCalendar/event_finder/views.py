@@ -16,6 +16,7 @@ user_contact = None
 # Create your views here.
 def home(request):
     lastest_events_list = Event.objects.all().order_by('-event_date').values()
+    print(lastest_events_list)
     context = {
         'query' : lastest_events_list,
         'user' : user,
@@ -30,15 +31,15 @@ def event_search(request):
     return render(request, 'event_search_page.html')
 
 def profile(request):
-    user_object = Users.objects.get(user_id=user.get_user_id())
-    user_events = Event.objects.get(user_id=user.get_user_id())
+    user_events = Event.objects.filter(user_id=user.user_id).values()
+    print(user_events)
     context = {
         'query' : user_events,
         'user' : user,
         'new' : True,
         'newaddress' : 'eventcreate/'
     }
-    return render(request, 'profile_page.html',context)
+    return render(request, 'profile_page.html', context)
 
 def eventcreate(request):
     data = {'user_id': user.user_id, 

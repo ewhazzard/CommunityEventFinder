@@ -19,15 +19,10 @@
                 {% if user %}
                     <a class="nav-item custom-nav-item">{{user}}</a>
                     {% comment %} <a class="nav-item custom-nav-item" href="{% url 'logout' %}">Login</a> {% endcomment %}
+                {% endif %}
             </div>
         </nav>
         <h1 id="main_header">{{user}}'s Profile</h1>
-        <div id="profile_info_section">
-            <h2>Profile Information</h2>
-        </div>
-        <div id="my_events_section">
-            <h2>My Events</h2>
-        </div>
         {%block contents%}
             <div class="row">
                 <div class="col-sm-12">
@@ -49,7 +44,7 @@
                                         <th scope="col"></th>
                                     {% endif %}
                                 {% endfor %}
-                                
+
                             </thead>
                             <tbody>
                                 {% for row in  query %}
