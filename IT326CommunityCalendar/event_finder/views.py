@@ -16,7 +16,6 @@ user_contact = None
 # Create your views here.
 def home(request):
     lastest_events_list = Event.objects.all().order_by('-event_date').values()
-    print(lastest_events_list)
     context = {
         'query' : lastest_events_list,
         'user' : user,
@@ -32,7 +31,6 @@ def event_search(request):
 
 def profile(request):
     user_events = Event.objects.filter(user_id=user.user_id).values()
-    print(user_events)
     context = {
         'query' : user_events,
         'user' : user,
