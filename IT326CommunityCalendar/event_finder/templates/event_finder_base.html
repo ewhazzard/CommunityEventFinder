@@ -35,7 +35,7 @@
                             <thead class="thead-dark">
                                 {% for row in query %}
                                     {% if forloop.first %}
-                                        <th scope="col">Event ID<th>
+                                        <th scope="col">Event ID</th>
                                         <th scope="col">Event Title</th>
                                         <th scope="col">User Description</th>
                                         <th scope="col">Event Date</th>
@@ -55,14 +55,14 @@
                                 <tr>
                                     {% for item in row.values  %}
                                         {% if forloop.counter == 2%}
-                                        {% elif forloop.counter == 3%}
-                                            <td scope="row"><a href="{{ request.get_path }}{{ row.event_id }}/">{{item}}</a></td>
+                                        {% comment %} {% elif forloop.counter == 3%}
+                                            <td scope="row"><a href="{{ request.get_path }}{{ row.event_id }}/">{{item}}</a></td> {% endcomment %}
                                         {% else %}
                                             <td>{{item}}</td>
                                         {% endif %}
                                     {% endfor %}
                                     {% if delete %}
-                                        <td><button class = "btn waves-effect waves-list btn-info" onclick="location.href='{{deleteaddress}}{{row.id}}'">Delete Event</button></td>
+                                        <td><button class = "btn waves-effect waves-list btn-info" onclick="location.href='{{request.get_path}}{{row.event_id}}'">Update Event</button></td>
                                     {% endif %}
                                 </tr>
                                 {% endfor %}
@@ -78,99 +78,5 @@
                 </div>
             </div>   
         {%endblock contents%}
-        {% comment %} <div id="upcoming_events_section">
-            <!-- Here we are using attributes like
-                cellspacing and cellpadding -->
-
-            <!-- The purpose of the cellpadding is
-                the space that a user want between
-                the border of cell and its contents-->
-
-            <!-- cellspacing is used to specify the
-                space between the cell and its contents -->
-            <h2 align="center" style="color: white;">
-                Upcoming Events
-            </h2>
-            <table bgcolor="white" align="center"
-                cellspacing="21" cellpadding="31">
-
-                <caption align="top">
-                    <!-- Here we have used the attribute
-                        that is style and we have colored
-                        the sentence to make it better
-                        depending on the web page-->
-                </caption>
-                <thead>
-                    <tr>
-                        <!-- Here we have applied inline style
-                            to make it more attractive-->
-                        <th>Sun</th>
-                        <th>Mon</th>
-                        <th>Tue</th>
-                        <th>Wed</th>
-                        <th>Thu</th>
-                        <th>Fri</th>
-                        <th>Sat</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td>2</td>
-                    </tr>
-                    <tr></tr>
-                    <tr>
-                        <td>3</td>
-                        <td>4</td>
-                        <td>5</td>
-                        <td>6</td>
-                        <td>7</td>
-                        <td>8</td>
-                        <td>9</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>11</td>
-                        <td>12</td>
-                        <td>13</td>
-                        <td>14</td>
-                        <td>15</td>
-                        <td>16</td>
-                    </tr>
-                    <tr>
-                        <td>17</td>
-                        <td>18</td>
-                        <td>19</td>
-                        <td>20</td>
-                        <td>21</td>
-                        <td>22</td>
-                        <td>23</td>
-                    </tr>
-                    <tr>
-                        <td>24</td>
-                        <td>25</td>
-                        <td>26</td>
-                        <td>27</td>
-                        <td>28</td>
-                        <td>29</td>
-                        <td>30</td>
-                    </tr>
-                    <tr>
-                        <td>31</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                        <td>5</td>
-                        <td>6</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div> {% endcomment %}
     </body>
 </html>
