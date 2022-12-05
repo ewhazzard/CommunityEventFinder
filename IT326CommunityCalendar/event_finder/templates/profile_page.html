@@ -13,18 +13,68 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div id="navbarSupportedContent">
                 <a class="navbar-brand" href="{% url 'homepage' %}">Community Event Finder</a>
-                <a class="nav-item custom-nav-item"  href="{% url 'homepage' %}">Home</a>
+                <a class="nav-item custom-nav-item" id="active-nav-item" href="{% url 'homepage' %}">Home</a>
                 <a class="nav-item custom-nav-item" href="{% url 'searchpage' %}">Event Search</a>
-                <a class="nav-item custom-nav-item" id="active-nav-item" href="{% url 'profilepage' %}">Profile</a>
+                <a class="nav-item custom-nav-item" href="{% url 'profilepage' %}">Profile</a>
+                {% if user %}
+                    <a class="nav-item custom-nav-item">{{user}}</a>
+                    {% comment %} <a class="nav-item custom-nav-item" href="{% url 'logout' %}">Login</a> {% endcomment %}
             </div>
-
         </nav>
-        <h1 id="main_header">(User Name)'s Profile</h1>
+        <h1 id="main_header">{{user}}'s Profile</h1>
         <div id="profile_info_section">
             <h2>Profile Information</h2>
         </div>
         <div id="my_events_section">
             <h2>My Events</h2>
         </div>
+        {%block contents%}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                {% for row in query %}
+                                    {% if forloop.first %}
+                                        <th scope="col">Event ID<th>
+                                        <th scope="col">Event Title</th>
+                                        <th scope="col">User Description</th>
+                                        <th scope="col">Event Date</th>
+                                        <th scope="col">Event Organizer First Name</th>
+                                        <th scope="col">Event Organizer Last Name</th>
+                                        <th scope="col">Organizer Email</th>
+                                        <th scope="col">Organizer Phone Number</th>
+                                        <th scope="col">Event City</th>
+                                        <th scope="col">Event State</th>
+                                        <th scope="col"></th>
+                                    {% endif %}
+                                {% endfor %}
+                                
+                            </thead>
+                            <tbody>
+                                {% for row in  query %}
+                                <tr>
+                                    {% for item in row.values  %}
+                                        {% if forloop.counter == 2%}
+                                        {% elif forloop.counter == 3%}
+                                            <td scope="row"><a href="{{ request.get_path }}{{ row.event_id }}/">{{item}}</a></td>
+                                        {% else %}
+                                            <td>{{item}}</td>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <th>
+                                    {% if new %}
+                                        <button type="button" class="btn waves-effect waves-list btn-info" onclick="location.href='{{newaddress}}'"> Create New Event</button>
+                                    {% endif %}
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>   
+        {%endblock contents%}
     </body>
 </html>

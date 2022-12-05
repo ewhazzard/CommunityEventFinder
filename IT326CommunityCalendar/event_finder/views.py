@@ -30,6 +30,12 @@ def event_search(request):
     return render(request, 'event_search_page.html')
 
 def profile(request):
+    user_object = Users.objects.get(user_id=user.get_user_id())
+    user_events = Event.objects.get(user_id=user.get_user_id())
+    context = {
+        'query' : user_events,
+        'user' : user
+    }
     return render(request, 'profile_page.html')
 
 def eventcreate(request):
