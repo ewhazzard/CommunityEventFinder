@@ -33,9 +33,10 @@
                 <form action="" method="post">
                     {% csrf_token %}
                     {{ form.as_table }}
+                    <input type="submit" value="Create Event">
                 </form>
             </table>
-            <input type="submit" value="Create Event">
+            
             {% endblock %}
 </body>
 
