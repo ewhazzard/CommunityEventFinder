@@ -21,8 +21,7 @@ def home(request):
         'user' : user,
         'new' : True,
         'newaddress' : 'eventcreate/',
-        'delete': True,
-        'deleteaddress': 'delete_event'
+        'update': True,
     }
     return render(request, 'event_finder_base.html', context)
 
@@ -116,3 +115,22 @@ def update_event(request, event_id):
                "user": user
     }
     return render(request, 'edit_event_form.html', context)
+
+def event_landing_page(request, event_id):
+    event_object = Event.objects.get(event_id=event_id)
+    context = {
+        'event_query' : event_object,
+        'user' : user,
+        'new' : True,
+        'newcommentaddress': "eventlanding/<int:event_id>/comment",
+        'RSVP': True,
+        'rvspaddress': "eventlanding/<int:event_id>/rsvp"
+    }
+    return render(request, 'event_landing_page.html', context)
+
+def add_comment(request, event_id):
+    pass
+
+def rsvp_to_event(request, event_id):
+    pass
+        

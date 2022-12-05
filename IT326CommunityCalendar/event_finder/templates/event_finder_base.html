@@ -56,13 +56,13 @@
                                 <tr>
                                     {% for item in row.values  %}
                                         {% if forloop.counter == 2%}
-                                        {% comment %} {% elif forloop.counter == 3%}
-                                            <td scope="row"><a href="{{ request.get_path }}{{ row.event_id }}/">{{item}}</a></td> {% endcomment %}
+                                        {% elif forloop.counter == 3%}
+                                            <td scope="row"><a href="{{ request.get_path }}eventlanding/{{ row.event_id }}/">{{item}}</a></td>
                                         {% else %}
                                             <td>{{item}}</td>
                                         {% endif %}
                                     {% endfor %}
-                                    {% if delete %}
+                                    {% if update %}
                                         <td><button class = "btn waves-effect waves-list btn-info" onclick="location.href='{{request.get_path}}update/{{row.event_id}}'">Update Event</button></td>
                                     {% endif %}
                                 </tr>
