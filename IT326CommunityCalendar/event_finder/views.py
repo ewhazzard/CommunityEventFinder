@@ -6,12 +6,12 @@ from Utils import User_Account, User_Details, Contact_Info, Location
 from datetime import date
 
 # Global User Variable to have a persistent User account
-user_details = User_Details.User_Details(["soccer", "cars"], ["soccer", "racing"], 21, "Male")
-user_location = Location.Location("user_from_db.user_street", "user_from_db.user_city", "user_from_db.user_state", "user_from_db.user_zipcode")
-user = User_Account.User_Account(0, "ewhazza", "rootuser", user_details)
-user_contact = Contact_Info.Contact_Info("Evan", "Hazzard", "ewhazza@ilstu.edu", 555555, user_location)
-# user = None
-# user_contact = None
+# user_details = User_Details.User_Details(["soccer", "cars"], ["soccer", "racing"], 21, "Male")
+# user_location = Location.Location("user_from_db.user_street", "user_from_db.user_city", "user_from_db.user_state", "user_from_db.user_zipcode")
+# user = User_Account.User_Account(0, "ewhazza", "rootuser", user_details)
+# user_contact = Contact_Info.Contact_Info("Evan", "Hazzard", "ewhazza@ilstu.edu", 555555, user_location)
+user = None
+user_contact = None
 
 # Create your views here.
 def home(request):
@@ -109,5 +109,8 @@ def update_event(request, event_id):
         if form.is_valid():
             form.save()
             return redirect(home)
-    context = { "form": form}
+    context = { 
+               "form": form,
+               "user": user
+    }
     return render(request, 'create_event_form.html', context)
