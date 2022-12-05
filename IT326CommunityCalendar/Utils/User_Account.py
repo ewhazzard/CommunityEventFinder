@@ -15,13 +15,16 @@ class User_Account:
     events = []
     # Contact information object that will contain all contact information for a user
     contact_information = None
+    # Boolean flag to indicate if the user is an admin
+    is_admin = False
 
     # Constructor
-    def __init__(self, user_id, user_name, password, user_details):
+    def __init__(self, user_id, user_name, password, user_details, is_admin):
         self.user_id = user_id
         self.user_name = user_name
         self.password = password
         self.user_details = user_details
+        self.is_admin = is_admin
         
     def __str__(self) -> str:
         return self.user_name
