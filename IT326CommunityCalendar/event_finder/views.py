@@ -22,6 +22,7 @@ def home(request):
         'new' : True,
         'newaddress' : 'eventcreate/',
         'update': True,
+        'admin': user.is_admin
     }
     return render(request, 'event_finder_base.html', context)
 
@@ -94,7 +95,7 @@ def login(request):
             user_location = Location.Location(user_from_db.user_street, user_from_db.user_city, user_from_db.user_state, user_from_db.user_zipcode)
             # To change the global version of the variables we have to address them as such
             global user, user_contact 
-            user = User_Account.User_Account(user_from_db.user_id, user_from_db.user_username, user_from_db.user_password, user_details)
+            user = User_Account.User_Account(user_from_db.user_id, user_from_db.user_username, user_from_db.user_password, user_details, user_from_db.user_admin)
             user_contact = Contact_Info.Contact_Info(user_from_db.user_fname, user_from_db.user_lname, user_from_db.user_email, user_from_db.user_phone, user_location)
             # Redirect back to the homepage with logged in screen
             return redirect(home) 
