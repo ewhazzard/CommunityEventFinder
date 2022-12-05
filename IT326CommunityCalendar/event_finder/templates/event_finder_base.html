@@ -62,7 +62,7 @@
                                         {% endif %}
                                     {% endfor %}
                                     {% if delete %}
-                                        <td><button class = "btn waves-effect waves-list btn-info" onclick="location.href='{{request.get_path}}{{row.event_id}}'">Update Event</button></td>
+                                        <td><button class = "btn waves-effect waves-list btn-info" onclick="location.href='{{request.get_path}}update/{{row.event_id}}'">Update Event</button></td>
                                     {% endif %}
                                 </tr>
                                 {% endfor %}
