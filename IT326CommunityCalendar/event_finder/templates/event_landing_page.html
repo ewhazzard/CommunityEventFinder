@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Event Landing Page</title>
-        <link rel="stylesheet" href="{% static 'css/create_event_base.css' %}">
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -63,14 +63,26 @@
                                 </tr>
                             </tbody>
                         </table>
-                        {% if user%}
-                            <button type="button" class="btn waves-effect waves-list btn-info" onclick="location.href='{{newcommentaddress}}'"> Comment</button>
-                            <button type="button" class="btn waves-effect waves-list btn-info" onclick="location.href='{{rsvpaddress}}'"> RSVP</button>
-                        {% endif%}
-                        
                     </div>
                 </div>
-            </div>   
+            </div>
+            <table class = "table">
+                <thead class = "thead-dark">
+                    <th scope="col">Comments</th>
+                </thead>
+                <tbody>
+                    {% for comment in  comment_query%}
+                        <td>{{comment.comment_string}}</td>
+                    {% endfor %}
+                </tbody>
+            
+            {% comment %} TODO: Fix the add comment button {% endcomment %}
+            {% if user%}
+                {% comment %} <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentModal">Comment</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rvspModal">RSVP</button> {% endcomment %}
+                <button type="button" class="btn waves-effect waves-list btn-info" onclick="location.href='{{newcommentaddress}}'"> Comment</button>
+                <button type="button" class="btn waves-effect waves-list btn-info" onclick="location.href='{{rsvpaddress}}'"> RSVP</button>
+            {% endif%}
         {% endblock%}
     </body>
 </html>

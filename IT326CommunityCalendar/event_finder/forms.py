@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, widgets
-from .models import Users, Event
+from .models import Users, Event, Comment
 
 class CEFForm(ModelForm):
     class Meta:
@@ -31,3 +31,8 @@ class EditEvent(ModelForm):
         widgets = {
             'event_date': widgets.SelectDateWidget()
         }
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = '__all__'

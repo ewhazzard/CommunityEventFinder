@@ -1,17 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import CEFForm, LoginForm,CreateEvent,EditEvent
-from .models import Users, Event
+from .forms import CEFForm, LoginForm,CreateEvent,EditEvent, CommentForm
+from .models import Users, Event, Comment, RSVP
 from Utils import User_Account, User_Details, Contact_Info, Location
 from datetime import date
 
 # Global User Variable to have a persistent User account
-# user_details = User_Details.User_Details(["soccer", "cars"], ["soccer", "racing"], 21, "Male")
-# user_location = Location.Location("user_from_db.user_street", "user_from_db.user_city", "user_from_db.user_state", "user_from_db.user_zipcode")
-# user = User_Account.User_Account(0, "ewhazza", "rootuser", user_details)
-# user_contact = Contact_Info.Contact_Info("Evan", "Hazzard", "ewhazza@ilstu.edu", 555555, user_location)
-user = None
-user_contact = None
+user_details = User_Details.User_Details(["soccer", "cars"], ["soccer", "racing"], 21, "Male")
+user_location = Location.Location("user_from_db.user_street", "user_from_db.user_city", "user_from_db.user_state", "user_from_db.user_zipcode")
+user = User_Account.User_Account(0, "ewhazza", "rootuser", user_details)
+user_contact = Contact_Info.Contact_Info("Evan", "Hazzard", "ewhazza@ilstu.edu", 555555, user_location)
+# user = None
+# user_contact = None
 
 # Create your views here.
 def home(request):
@@ -118,18 +118,35 @@ def update_event(request, event_id):
 
 def event_landing_page(request, event_id):
     event_object = Event.objects.get(event_id=event_id)
+    # comments_object = Comment.objects.get(event_id=event_id)
+    # rsvp_object = RSVP.objects.get(event_id=event_id)
     context = {
         'event_query' : event_object,
         'user' : user,
         'new' : True,
-        'newcommentaddress': "eventlanding/<int:event_id>/comment",
+        'newcommentaddress': "comment",
+        # 'comment_query': comments_object,
         'RSVP': True,
-        'rvspaddress': "eventlanding/<int:event_id>/rsvp"
+        'rsvpaddress': "rsvp",
+        # 'rsvp_query': rsvp_object
     }
     return render(request, 'event_landing_page.html', context)
 
 def add_comment(request, event_id):
-    pass
+    event_object = Event.objects.get(event_id=event_id)
+    data = {'user_id': event_object.user_id, 
+            'event_id': event_object.event_id}
+    form = CommentForm(initial = data)
+    if request.method == 'POST':
+        # Add the request to a Users object
+        form = CommentForm(request.POST, initial = data)
+        # If the form is valid, save it
+        if form.is_valid():
+            form.save()
+            # Return control to home page after form submission
+            return redirect(home)
+    context = {'form': form}
+    return render(request, 'add_comment.html', context)
 
 def rsvp_to_event(request, event_id):
     pass
