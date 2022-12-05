@@ -23,3 +23,11 @@ class CreateEvent(ModelForm):
         widgets = {
             'event_date': widgets.SelectDateWidget()
         }
+
+class EditEvent(ModelForm):
+     class Meta:
+        model = Event
+        fields = '__all__'
+        widgets = {
+            'event_date': widgets.SelectDateWidget()
+        }

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import CEFForm, LoginForm,CreateEvent
+from .forms import CEFForm, LoginForm,CreateEvent,EditEvent
 from .models import Users, Event
 from Utils import User_Account, User_Details, Contact_Info, Location
 from datetime import date
@@ -61,7 +61,8 @@ def eventcreate(request):
             "user": user
     }
     return render(request, 'create_event_form.html', context)
-    
+
+
 def create_account(request):
     form = CEFForm()
     if request.method == 'POST':
@@ -106,9 +107,9 @@ def login(request):
 
 def update_event(request, event_id):
     event_object = Event.objects.get(event_id=event_id)
-    form = CreateEvent(instance=event_object)
+    form = EditEvent(instance=event_object)
     if request.method == 'POST':
-        form = CreateEvent(request.POST, instance=event_object)
+        form = EditEvent(request.POST, instance=event_object)
         if form.is_valid():
             form.save()
             return redirect(home)
@@ -116,4 +117,4 @@ def update_event(request, event_id):
                "form": form,
                "user": user
     }
-    return render(request, 'create_event_form.html', context)
+    return render(request, 'edit_event_form.html', context)
