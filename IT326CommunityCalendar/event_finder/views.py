@@ -1,17 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import CEFForm, LoginForm,CreateEvent,EditEvent, CommentForm
+from .forms import CEFForm, LoginForm,CreateEvent,EditEvent, CommentForm, RSVPForm
 from .models import Users, Event, Comment, RSVP
 from Utils import User_Account, User_Details, Contact_Info, Location
 from datetime import date
 
 # Global User Variable to have a persistent User account
-user_details = User_Details.User_Details(["soccer", "cars"], ["soccer", "racing"], 21, "Male")
-user_location = Location.Location("user_from_db.user_street", "user_from_db.user_city", "user_from_db.user_state", "user_from_db.user_zipcode")
-user = User_Account.User_Account(0, "ewhazza", "rootuser", user_details)
-user_contact = Contact_Info.Contact_Info("Evan", "Hazzard", "ewhazza@ilstu.edu", 555555, user_location)
-# user = None
-# user_contact = None
+# user_details = User_Details.User_Details(["soccer", "cars"], ["soccer", "racing"], 21, "Male")
+# user_location = Location.Location("user_from_db.user_street", "user_from_db.user_city", "user_from_db.user_state", "user_from_db.user_zipcode")
+# user = User_Account.User_Account(0, "ewhazza", "rootuser", user_details)
+# user_contact = Contact_Info.Contact_Info("Evan", "Hazzard", "ewhazza@ilstu.edu", 555555, user_location)
+user = None
+user_contact = None
 
 # Create your views here.
 def home(request):
@@ -149,5 +149,24 @@ def add_comment(request, event_id):
     return render(request, 'add_comment.html', context)
 
 def rsvp_to_event(request, event_id):
-    pass
+    event_object = Event.objects.get(event_id=event_id)
+    data = {'user_id': event_object.user_id, 
+            'event_id': event_object.event_id}
+    form = RSVPForm(initial = data)
+    if request.method == 'POST':
+        # Add the request to a Users object
+        form = RSVPForm(request.POST, initial = data)
+        # If the form is valid, save it
+        if form.is_valid():
+            form.save()
+            # Return control to home page after form submission
+            return redirect(home)
+    context = {'form': form}
+    return render(request, 'add_rsvp.html', context)
+
+def logout(request):
+    global user, user_contact
+    user = None
+    user_contact = None
+    return redirect(home)
         

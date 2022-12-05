@@ -18,7 +18,7 @@
                 {% if user %}
                     <a class="nav-item custom-nav-item" href="{% url 'profilepage' %}">Profile</a>
                     <a class="nav-item custom-nav-item">{{user}}</a>
-                    {% comment %} <a class="nav-item custom-nav-item" href="{% url 'logout' %}">Login</a> {% endcomment %}
+                    <a class="nav-item custom-nav-item" href="{% url 'logout' %}">Logout</a>
                 {% else %}
                     <a class="nav-item custom-nav-item" href="{% url 'createaccount' %}">Create Account</a>
                     <a class="nav-item custom-nav-item" href="{% url 'login' %}">Login</a>

@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, widgets
-from .models import Users, Event, Comment
+from .models import Users, Event, Comment, RSVP
 
 class CEFForm(ModelForm):
     class Meta:
@@ -35,4 +35,9 @@ class EditEvent(ModelForm):
 class CommentForm(ModelForm):
     class Meta:
         model = Comment
+        fields = '__all__'
+        
+class RSVPForm(ModelForm):
+    class Meta:
+        model = RSVP
         fields = '__all__'

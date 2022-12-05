@@ -12,5 +12,6 @@ urlpatterns = [
     path('update/<int:event_id>/', views.update_event, name='updateevent'),
     path('eventlanding/<int:event_id>/', views.event_landing_page, name='eventlanding'),
     path('eventlanding/<int:event_id>/comment', views.add_comment, name='addcomment'),
-    path('eventlanding/<int:event_id>/rsvp', views.add_comment, name='addcomment')
+    path('eventlanding/<int:event_id>/rsvp', views.rsvp_to_event, name='addcomment'),
+    path('logout/', views.logout, name='logout')
 ]
