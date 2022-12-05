@@ -55,7 +55,8 @@
                                 <tr>
                                     {% for item in row.values  %}
                                         {% if forloop.counter == 2%}
-                                            <th scope="row"><a href="{{ request.get_path }}{{ row.id }}/">{{item.event_title}}</a></th>
+                                        {% elif forloop.counter == 3%}
+                                            <td scope="row"><a href="{{ request.get_path }}{{ row.event_id }}/">{{item}}</a></td>
                                         {% else %}
                                             <td>{{item}}</td>
                                         {% endif %}

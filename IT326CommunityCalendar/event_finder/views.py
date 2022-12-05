@@ -94,3 +94,14 @@ def login(request):
             # Handle incorrect Login
     context = {'form': form}
     return render(request, 'login.html', context)
+
+def update_event(request, event_id):
+    event_object = Event.objects.get(event_id=event_id)
+    form = CreateEvent(instance=event_object)
+    if request.method == 'POST':
+        form = CreateEvent(request.POST, instance=event_object)
+        if form.is_valid():
+            form.save()
+            return redirect(home)
+    context = { "form": form}
+    return render(request, 'create_event_form.html', context)
