@@ -151,7 +151,8 @@ def update_event(request, event_id):
     return render(request, 'edit_event_form.html', context)
 
 def delete_event(request, event_id):
-    pass
+    event_object = Event.objects.get(event_id=event_id).delete()
+    return redirect(home)
 
 def event_landing_page(request, event_id):
     event_object = Event.objects.get(event_id=event_id)
