@@ -52,7 +52,7 @@ def test_RSVP_creation():
         "John", "Smith", "john.smith@gmail.com", "854-456-7891", "Normal, IL")
     event = Event(42387, contact_info, user.get_user_id())
     main_function = user.initiate_RSVP(42387)
-    rsvp_test = RSVP(user.get_user_id(), datetime.date.today)
+    rsvp_test = RSVP(datetime.date.today, user.get_user_id())
     assert rsvp_test.get_user_id() == main_function.get_user_id()
     assert rsvp_test.get_RSVP_date() == main_function.get_RSVP_date()
 
