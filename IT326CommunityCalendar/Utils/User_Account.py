@@ -1,6 +1,6 @@
 from Utils.User_Details import User_Details
 from Utils.Contact_Info import Contact_Info
-from event import Event
+from Utils.event import Event
 
 class User_Account:
     # Class variables
