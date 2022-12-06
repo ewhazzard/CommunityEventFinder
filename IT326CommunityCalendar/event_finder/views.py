@@ -75,7 +75,10 @@ def profileupdate(request):
 
 
 def eventcreate(request):
-    data = {'user_id': user.user_id, 
+    new_event_id = Event.objects.aggregate(Max('event_id')) + 1
+    data = {
+            'event_id': new_event_id,
+            'user_id': user.user_id, 
             'event_email': user_contact.email,
             'event_phone': user_contact.phone,
             'event_city': user_contact.location.city,
@@ -139,7 +142,6 @@ def login(request):
     return render(request, 'login.html', context)
 
 def update_event(request, event_id):
-    new_event_id = Event.objects.aggregate(Max('event_id')) + 1
     event_object = Event.objects.get(event_id=event_id)
     form = EditEvent(instance=event_object)
     if request.method == 'POST':
@@ -148,7 +150,6 @@ def update_event(request, event_id):
             form.save()
             return redirect(home)
     context = { 
-               "new_event_id" : new_event_id,
                "form": form,
                "user": user
     }
