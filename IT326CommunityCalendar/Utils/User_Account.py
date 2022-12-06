@@ -46,7 +46,6 @@ class User_Account:
         pass
 
     def initiate_RSVP(self,event_id):
-        
         pass
 
     def initiate_comment(self,event_id,content):

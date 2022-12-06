@@ -89,3 +89,21 @@ Testing part of the functionality for requirement 3.1.15 (Search for city of int
     ).get_location().get_city() != "Chicago"
     assert list[1].get_event_details().get_contact_info(
     ).get_location().get_city() == "Chicago"
+
+def test_editing_event_details():
+    """Testing 3.1.7- edit event details"""
+    location1 = Location("23 Blackberry St", "Normal", "IL", 61606)
+    contactInfo1 = Contact_Info(
+        "Dan", "Smith", "dsmith@ilstu.edu", "318-329-2930", location1)
+    event_details = Event_Details(
+        "Neighborhood Party", "Fun Social Event", contactInfo1, datetime.date(2022, 5, 10))
+    test_event=Event( 18, 747, event_details)
+    assert(test_event.event_details.get_date==event_details.get_date)
+    assert(test_event.event_details.get_description==event_details.get_description)
+    assert(test_event.event_details.get_title==event_details.get_title)
+    test_event.event_details.set_date(datetime(2022,5,12))
+    test_event.event_details.set_description("verry Fun Social Event")
+    test_event.event_details.set_title("City Party")
+    assert(test_event.event_details.get_date==datetime(2022,5,12))
+    assert(test_event.event_details.get_description=="verry Fun Social Event")
+    assert(test_event.event_details.get_title=="City Party")
