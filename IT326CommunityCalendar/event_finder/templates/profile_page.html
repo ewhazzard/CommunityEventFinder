@@ -96,6 +96,7 @@
                                             <td>{{item}}</td>
                                         {% endif %}
                                     {% endfor %}
+                                    <td><button type="button" class="btn waves-effect waves-list btn-info" onclick="location.href='{{ request.get_path }}/update/{{ row.event_id }}'"> Update Event</button></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
