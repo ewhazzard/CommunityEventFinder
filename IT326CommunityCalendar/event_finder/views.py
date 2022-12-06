@@ -148,6 +148,9 @@ def update_event(request, event_id):
     }
     return render(request, 'edit_event_form.html', context)
 
+def delete_event(request, event_id):
+    pass
+
 def event_landing_page(request, event_id):
     event_object = Event.objects.get(event_id=event_id)
     comments_object = Comment.objects.filter(event_id=event_id)

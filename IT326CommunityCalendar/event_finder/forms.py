@@ -34,7 +34,7 @@ class EditEvent(ModelForm):
 
 class EditProfile(ModelForm):
     class Meta:
-        model = Event
+        model = Users
         fields = '__all__'
 
 class CommentForm(ModelForm):
