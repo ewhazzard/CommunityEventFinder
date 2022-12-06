@@ -237,7 +237,8 @@ def rsvp_to_event(request, event_id):
         rsvp_new_id = RSVP.objects.latest('rsvp_id').rsvp_id + 1
     else:
         rsvp_new_id = 0
-    data = {'user_id': event_object.user_id, 
+    global user
+    data = {'user_id': user.user_id, 
             'event_id': event_object.event_id,
             'rsvp_date': date.today(),
             'rsvp_id': rsvp_new_id }
@@ -253,17 +254,17 @@ def rsvp_to_event(request, event_id):
     context = {'form': form, 'user' : user, 'event_name': event_object.event_title}
     return render(request, 'add_rsvp.html', context)
 
-def logout():
+def logout(request):
     global user, user_contact
     user = None
     user_contact = None
     return redirect(home)
         
-def delete_rsvp(rsvp_id):
+def delete_rsvp(request,rsvp_id):
     RSVP.objects.get(rsvp_id=rsvp_id).delete()
     return redirect(home)
 
-def delete_user( user_id):
+def delete_user(request,user_id):
     Users.objects.get(user_id=user_id).delete()
     global user
     user = None

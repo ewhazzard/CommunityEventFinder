@@ -76,11 +76,7 @@
                         <td>{{comment.comment_string}}</td>
                     {% endfor %}
                 </tbody>
-            
-            {% comment %} TODO: Fix the add comment button {% endcomment %}
             {% if user%}
-                {% comment %} <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentModal">Comment</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rvspModal">RSVP</button> {% endcomment %}
                 <button type="button" class="btn waves-effect waves-list btn-info" onclick="location.href='{{newcommentaddress}}'"> Comment</button>
                 <button type="button" class="btn waves-effect waves-list btn-info" onclick="location.href='{{rsvpaddress}}'"> RSVP</button>
             {% endif%}
