@@ -10,6 +10,7 @@ import datetime
 
 
 def test_event_details_creation_retrieval():
+    """Testing for 3.1.6- create an event"""
     testEventDetails = Event_Details("Neighborhood Party", "Fun Social Event", Contact_Info(
         "", "", "", "", Location("", "", "", 0)), datetime.date(2022, 5, 10))
     testEvent = Event("1111", "2222", testEventDetails)
@@ -21,6 +22,7 @@ def test_event_details_creation_retrieval():
 
 
 def test_event_contact_info_creation_retrieval():
+    """Testing for 3.1.16- Link contact info to event post"""
     testContact = Contact_Info(
         "Dan", "Smith", "dsmith@ilstu.edu", "318-329-2930", Location("", "", "", 0))
     testEventDetails = Event_Details(
@@ -38,6 +40,7 @@ def test_event_contact_info_creation_retrieval():
 
 
 def test_event_location_info_creation_retrieval():
+    """Retriving location from an event"""
     testLocation = Location("23 Blackberry St", "Normal", "IL", 61606)
     testContact = Contact_Info(
         "Dan", "Smith", "dsmith@ilstu.edu", "318-329-2930", testLocation)
@@ -55,11 +58,12 @@ def test_event_location_info_creation_retrieval():
     ).get_location().get_zipcode() == testLocation.get_zipcode()
 
 
-"""
-Testing part of the functionality for requirement 3.1.15 (Search for city of interest). User searches for the city "Chicago".
-"""
+
 
 def test_event_with_city_of_interest():
+    """
+Testing part of the functionality for requirement 3.1.15 (Search for city of interest). User searches for the city "Chicago".
+"""
     location1 = Location("23 Blackberry St", "Normal", "IL", 61606)
     location2 = Location("123 Easy Street", "Chicago", "Illinois", 60123)
 
