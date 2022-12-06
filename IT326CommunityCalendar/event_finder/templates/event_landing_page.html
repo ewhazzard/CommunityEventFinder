@@ -1,0 +1,85 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Profile Page</title>
+        <link rel="stylesheet" href="{% static 'css/create_event_form.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <script src="static/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div id="navbarSupportedContent">
+                <a class="navbar-brand" href="{% url 'homepage' %}">Community Event Finder</a>
+                <a class="nav-item custom-nav-item" id="active-nav-item" href="{% url 'homepage' %}">Home</a>
+                <a class="nav-item custom-nav-item" href="{% url 'searchpage' %}">Event Search</a>
+                {% if user %}
+                    <a class="nav-item custom-nav-item" href="{% url 'profilepage' %}">Profile</a>
+                    <a class="nav-item custom-nav-item">{{user}}</a>
+                    <a class="nav-item custom-nav-item" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a class="nav-item custom-nav-item" href="{% url 'createaccount' %}">Create Account</a>
+                    <a class="nav-item custom-nav-item" href="{% url 'login' %}">Login</a>
+                {% endif %}
+                
+            </div>
+        </nav>
+        {% block content%}
+        <h4>Event Countdown: <h4 style="color: red">{{countdown}}</h4></h4>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <th scope="col">Event ID</th>
+                                <th scope="col">Event Title</th>
+                                <th scope="col">User Description</th>
+                                <th scope="col">Event Date</th>
+                                <th scope="col">Event Organizer First Name</th>
+                                <th scope="col">Event Organizer Last Name</th>
+                                <th scope="col">Organizer Email</th>
+                                <th scope="col">Organizer Phone Number</th>
+                                <th scope="col">Event City</th>
+                                <th scope="col">Event State</th>
+                                <th scope="col"></th>
+                            </thead>
+                            <tbody>
+                                {% if event_query.event_flagged == True %}
+                                    <tr class="table-danger">
+                                    <h3>This event was flagged for abuse please consult administration</h3>
+                                {% else %}
+                                    <tr>
+                                {% endif %}
+                                    <td>{{event_query.event_id}}</td>
+                                    <td>{{event_query.event_title}}</td>
+                                    <td>{{event_query.user_description}}</td>
+                                    <td>{{event_query.event_date}}</td>
+                                    <td>{{event_query.creator_first_name}}</td>
+                                    <td>{{event_query.creator_last_name}}</td>
+                                    <td>{{event_query.event_email}}</td>
+                                    <td>{{event_query.event_phone}}</td>
+                                    <td>{{event_query.event_city}}</td>
+                                    <td>{{event_query.event_state}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <table class = "table">
+                <thead class = "thead-dark">
+                    <th scope="col">Comments</th>
+                </thead>
+                <tbody>
+                    {% for comment in  comment_query%}
+                        <td>{{comment.comment_string}}</td>
+                    {% endfor %}
+                </tbody>
+            {% if user%}
+                <button type="button" class="btn waves-effect waves-list btn-info" onclick="location.href='{{newcommentaddress}}'"> Comment</button>
+                <button type="button" class="btn waves-effect waves-list btn-info" onclick="location.href='{{rsvpaddress}}'"> RSVP</button>
+            {% endif%}
+        {% endblock%}
+    </body>
+</html>

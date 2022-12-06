@@ -1,0 +1,19 @@
+#main_header{
+    text-align: center;
+    font-size: 55px;
+    color: rgb(0, 0, 0);
+}
+
+#top_header_body{
+    text-align: center;
+    margin: 40px auto auto auto;
+    color: black;
+}
+
+#event_form_section{
+    margin: 0 auto 0 auto;
+    height: 20vh;
+    width: 70%;
+}
+
+

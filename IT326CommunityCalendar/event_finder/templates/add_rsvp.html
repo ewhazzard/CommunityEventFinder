@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Profile Page</title>
+        <link rel="stylesheet" href="{% static 'css/create_event_form.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <script src="static/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div id="navbarSupportedContent">
+                <a class="navbar-brand" href="{% url 'homepage' %}">Community Event Finder</a>
+                <a class="nav-item custom-nav-item" id="active-nav-item" href="{% url 'homepage' %}">Home</a>
+                <a class="nav-item custom-nav-item" href="{% url 'searchpage' %}">Event Search</a>
+                {% if user %}
+                    <a class="nav-item custom-nav-item" href="{% url 'profilepage' %}">Profile</a>
+                    <a class="nav-item custom-nav-item">{{user}}</a>
+                    <a class="nav-item custom-nav-item" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a class="nav-item custom-nav-item" href="{% url 'createaccount' %}">Create Account</a>
+                    <a class="nav-item custom-nav-item" href="{% url 'login' %}">Login</a>
+                {% endif %}
+                
+            </div>
+        </nav>
+        <h1>RSVP to: {{event_name}}</h1>
+        {% block content %}
+            <table>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_table }}
+                    <input type="submit" value="RSVP To Event">
+                </form>
+            </table>
+        {% endblock %}
+    </body>
+</html>
