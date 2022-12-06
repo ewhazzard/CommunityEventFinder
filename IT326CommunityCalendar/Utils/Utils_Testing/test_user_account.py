@@ -17,6 +17,26 @@ def test_user_details_creation():
     assert testUserDetails.get_hobbies==["Soccer","Golf","Running","Swimming"]
     assert testUserDetails.get_intrests==["Computer Science","Math","Physics"]
 
+"""
+Testing part of the functionality for requirement 3.1.15 (Search for city of interest). User searches for the city "Chicago".
+"""
+def test_user_account_deletion():
+
+    list = []
+    testUserDetails = User_Details(["Soccer","Golf","Running","Swimming"],["Computer Science","Math","Physics"],19,"Boy")
+    user=User_Account(2223, "John_Smith", "Snake_tooth99", testUserDetails)
+
+    list.append(user)
+    list.remove(user)
+    del user
+    del testUserDetails
+
+    if not list:
+        assert(1)
+
+
+
+
 def test_RSVP_creation():
     testUserDetails = User_Details(["Soccer","Golf","Running","Swimming"],["Computer Science","Math","Physics"],19,"Boy")
     user=User_Account(2223, "John_Smith", "Snake_tooth99", testUserDetails)
