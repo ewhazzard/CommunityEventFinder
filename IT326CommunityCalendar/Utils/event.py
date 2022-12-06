@@ -17,14 +17,14 @@ class Event:
     comments = []
     # List of RSVP objects that holds RSVP information for the event
     rsvps = []
-    
-    def __init__(self,event_id,user_id, event_details):
-        self.event_id=event_id
-        self.user_id=user_id
-        self.comments=[]
-        self.rsvps=[]
+
+    def __init__(self, event_id, user_id, event_details):
+        self.event_id = event_id
+        self.user_id = user_id
+        self.comments = []
+        self.rsvps = []
         self.event_details = event_details
-    
+
     def view_details(self):
         detailsMessage = F"Name: {Event_Details.get_title}" + "\t" + \
             F"Date: {Event_Details.get_date}" + "\n\t" + \
@@ -35,11 +35,12 @@ class Event:
 
     def get_event_details(self):
         return self.event_details
-    
+
     # Setter for Event Details. Constructs an Event Details object
     def set_event_details(self, title, description, location, city, date):
-        self.event_details = Event_Details(title, description, location, city, date)
-        
+        self.event_details = Event_Details(
+            title, description, location, city, date)
+
     def add_RSVP(self, id):
         rsvp = RSVP(RSVP.get_RSVP_date, RSVP.get_user_id)
 
