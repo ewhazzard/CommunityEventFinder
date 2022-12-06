@@ -29,6 +29,7 @@
             <h2 id="main_header"> Community Event Manager </h2>
             <h3> Edit Event </h3>
             {% block content %}
+            <h6>New Event Id: {{new_event_id}}</h6>
             <table>
                 <form action="" method="post">
                     {% csrf_token %}

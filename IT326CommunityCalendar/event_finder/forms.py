@@ -27,7 +27,10 @@ class CreateEvent(ModelForm):
 class EditEvent(ModelForm):
      class Meta:
         model = Event
-        fields = '__all__'
+        fields = ['user_id','event_title','event_description',
+                'event_date','creator_first_name','creator_last_name','event_email',
+                'event_phone','event_city','event_state']
+        # fields = '__all__'
         widgets = {
             'event_date': widgets.SelectDateWidget()
         }

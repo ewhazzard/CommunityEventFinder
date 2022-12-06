@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.db.models import Max
 from .forms import CEFForm, LoginForm,CreateEvent,EditEvent, CommentForm, RSVPForm, EditProfile
 from .models import Users, Event, Comment, RSVP
 from Utils import User_Account, User_Details, Contact_Info, Location
@@ -138,6 +139,7 @@ def login(request):
     return render(request, 'login.html', context)
 
 def update_event(request, event_id):
+    new_event_id = Event.objects.aggregate(Max('event_id')) + 1
     event_object = Event.objects.get(event_id=event_id)
     form = EditEvent(instance=event_object)
     if request.method == 'POST':
@@ -146,6 +148,7 @@ def update_event(request, event_id):
             form.save()
             return redirect(home)
     context = { 
+               "new_event_id" : new_event_id,
                "form": form,
                "user": user
     }
