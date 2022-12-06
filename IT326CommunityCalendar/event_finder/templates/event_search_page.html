@@ -21,6 +21,17 @@
         </nav>
         <h1 id="main_header">Community Event Search</h1>
         <h1 id="top_header_body">Find Events That Interest You!</h1>
+        
+        {% block content %}
+        <table>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_table }}
+                <input type="submit" value="Create Event">
+            </form>
+        </table>
+        {% endblock %}
+
         <div id="events_section">
             <h2>Events</h2>
         </div>

@@ -1,11 +1,6 @@
 from Utils.User_Details import User_Details
 from Utils.Contact_Info import Contact_Info
-<<<<<<< HEAD
-from event import Event
-from event_details import Event_Details
-=======
 from Utils.event import Event
->>>>>>> 17869cb9a5e2290f315c56504745dcd064b62e56
 
 class User_Account:
     # Class variables
