@@ -25,11 +25,14 @@ def test_user_details_creation():
 """
 Testing part of the functionality for requirement 3.1.2 (Delete an account).
 """
+
+
 def test_user_account_deletion():
 
     list = []
-    testUserDetails = User_Details(["Soccer","Golf","Running","Swimming"],["Computer Science","Math","Physics"],19,"Boy")
-    user=User_Account(2223, "John_Smith", "Snake_tooth99", testUserDetails)
+    testUserDetails = User_Details(["Soccer", "Golf", "Running", "Swimming"], [
+                                   "Computer Science", "Math", "Physics"], 19, "Boy")
+    user = User_Account(2223, "John_Smith", "Snake_tooth99", testUserDetails)
 
     list.append(user)
     list.remove(user)
@@ -37,9 +40,7 @@ def test_user_account_deletion():
     del testUserDetails
 
     if not list:
-        assert(1)
-
-
+        assert (1)
 
 
 def test_RSVP_creation():
@@ -68,6 +69,11 @@ def test_user_details_creation_retrieval():
     ).get_gender() == testUserDetails.get_gender()
     assert testUserAccount.get_user_details(
     ).get_interests() == testUserDetails.get_interests()
+
+
+"""
+Testing part of the functionality for requirement 3.1.10 (Comment on event posting)
+"""
 
 
 def test_comment_creation():
