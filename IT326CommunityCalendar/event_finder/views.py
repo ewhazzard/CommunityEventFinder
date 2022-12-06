@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db.models import Max
-from .forms import CEFForm, LoginForm,CreateEvent,EditEvent, CommentForm, RSVPForm, EditProfile
+from .forms import CEFForm, LoginForm,CreateEvent,EditEvent, CommentForm, RSVPForm, EditProfile,SearchForm
 from .models import Users, Event, Comment, RSVP
 from Utils import User_Account, User_Details, Contact_Info, Location
 from datetime import datetime,timezone
@@ -29,8 +29,29 @@ def home(request):
         context['admin'] = user.is_admin
     return render(request, 'event_finder_base.html', context)
 
-def event_search(request):
-    return render(request, 'event_search_page.html')
+    
+
+def event_search_form(request):
+    form = SearchForm()
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            if form['param_title']:
+                event_list = Event.objects.filter(event_title=form['param_title']).values()
+            elif form['param_city']:
+                event_list = Event.objects.filter(event_city=form['param_city']).values()
+            elif form['param_state']:
+                event_list = Event.objects.filter(event_state=form['param_state']).values()
+            else:
+                event_list = Event.objects.all().order_by('-event_date').values()
+
+    
+            context = {
+                    'event_query' : event_list,
+                    "user": user
+            }
+            return render(request, 'event_search_form.html',context)
+    return render(request,'event_search_form.html')
 
 def profile(request):
     numRSVPs = RSVP.objects.filter(user_id=user.user_id).count()

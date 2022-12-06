@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intitial-scale=1.0">
+    <title> Create Account </title>
+</head>
+<body>
+    <div>
+        <div class = "banner">
+            <h2> Community Event Manager </h2>
+            <h3> Event Search Form </h3>
+    {% block content %}
+        <table>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_table }}
+                <input type="submit" value="Search Events">
+            </form>
+        </table>
+        
+    {% endblock %}
+</body>
+</html>
+
+
+

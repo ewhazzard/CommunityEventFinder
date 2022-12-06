@@ -49,3 +49,8 @@ class RSVPForm(ModelForm):
     class Meta:
         model = RSVP
         fields = '__all__'
+
+class SearchForm(ModelForm):
+    class Meta:
+        model = Event
+        fields = ['event_title','event_city','event_state']
