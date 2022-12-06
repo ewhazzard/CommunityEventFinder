@@ -59,7 +59,6 @@ def test_event_location_info_creation_retrieval():
 Testing part of the functionality for requirement 3.1.15 (Search for city of interest). User searches for the city "Chicago".
 """
 
-
 def test_event_with_city_of_interest():
     location1 = Location("23 Blackberry St", "Normal", "IL", 61606)
     location2 = Location("123 Easy Street", "Chicago", "Illinois", 60123)

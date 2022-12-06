@@ -39,16 +39,6 @@ def profile(request):
     user_rsvps = RSVP.objects.filter(user_id=user.user_id).values()
     context = {
         'user_query' : user_obj,
-        # 'user_fname' : user_obj.user_fname,
-        # 'user_lname' : user_obj.user_lname,
-        # 'user_age' : user_obj.user_age,
-        # 'user_city' : user_obj.user_city,
-        # 'user_gender' : user_obj.user_gender,
-        # 'user_hobbies' : user_obj.user_hobbies,
-        # 'user_interests' : user_obj.user_interests,
-        # 'user_phone' : user_obj.user_phone,
-        # 'user_username' : user_obj.user_username,
-        # 'user_zipcode' : user_obj.user_zipcode,
         'numrsvp' : numRSVPs,
         'updateaddress' : 'profileupdate/',
         'event_query' : user_events,
@@ -75,7 +65,12 @@ def profileupdate(request):
 
 
 def eventcreate(request):
-    new_event_id = Event.objects.latest('event_id').event_id + 1
+    # If there is a Event in the table already, increase the last ID by one and make the new comment id that new number
+    if Event.objects.all().exists:
+        new_event_id = Event.objects.latest('event_id').event_id + 1
+    # If this is the first Event, ID = 0
+    else:
+        new_event_id = 0
     data = {
             'event_id': new_event_id,
             'user_id': user.user_id, 
@@ -100,10 +95,17 @@ def eventcreate(request):
 
 
 def create_account(request):
-    form = CEFForm()
+    # If there is a Users in the table already, increase the last ID by one and make the new comment id that new number
+    if(Users.objects.all().exists()):
+        new_user_id =  Users.objects.latest('user_id').user_id + 1
+    # If this is the first User, ID = 0
+    else:
+        new_user_id = 0
+    data = {'user_id': new_user_id}
+    form = CEFForm(initial=data)
     if request.method == 'POST':
         # Add the request to a Users object
-        form = CEFForm(request.POST)
+        form = CEFForm(request.POST, initial=data)
         # If the form is valid, save it
         if form.is_valid():
             form.save()
@@ -179,9 +181,16 @@ def event_landing_page(request, event_id):
     return render(request, 'event_landing_page.html', context)
 
 def add_comment(request, event_id):
+    # If there is a comment in the table already, increase the last ID by one and make the new comment id that new number
+    if(Comment.objects.all().exists()):
+        new_comment_id = Comment.objects.latest('comment_id').comment_id + 1
+    # If there exists no comments, make the ID 0
+    else:
+        new_comment_id = 0
     event_object = Event.objects.get(event_id=event_id)
     data = {'user_id': event_object.user_id, 
-            'event_id': event_object.event_id}
+            'event_id': event_object.event_id,
+            'comment_id': new_comment_id}
     form = CommentForm(initial = data)
     if request.method == 'POST':
         # Add the request to a Users object

@@ -47,7 +47,12 @@
                                 <th scope="col"></th>
                             </thead>
                             <tbody>
-                                <tr>
+                                {% if event_query.event_flagged == True %}
+                                    <tr class="table-danger">
+                                    <h3>This event was flagged for abuse please consult administration</h3>
+                                {% else %}
+                                    <tr>
+                                {% endif %}
                                     <td>{{event_query.event_id}}</td>
                                     <td>{{event_query.event_title}}</td>
                                     <td>{{event_query.user_description}}</td>

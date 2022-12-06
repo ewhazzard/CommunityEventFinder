@@ -87,11 +87,16 @@
                             </thead>
                             <tbody>
                                 {% for row in  event_query%}
-                                <tr>
+                                    {% if row.event_flagged == True %}
+                                        <tr class="table-danger">
+                                    {% else %}
+                                        <tr>
+                                    {% endif %}
                                     {% for item in row.values  %}
                                         {% if forloop.counter == 2%}
                                         {% elif forloop.counter == 3%}
-                                            <td scope="row"><a href="{{ request.get_path }}{{ row.event_id }}/">{{item}}</a></td>                                            
+                                            <td scope="row"><a href="{{ request.get_path }}{{ row.event_id }}/">{{item}}</a></td>
+                                        {% elif forloop.counter == 12%}                                            
                                         {% else %}
                                             <td>{{item}}</td>
                                         {% endif %}

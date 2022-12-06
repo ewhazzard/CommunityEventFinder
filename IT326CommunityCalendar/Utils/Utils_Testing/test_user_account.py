@@ -21,13 +21,12 @@ def test_user_details_creation():
     assert testUserDetails.get_intrests == [
         "Computer Science", "Math", "Physics"]
 
-
-"""
-Testing part of the functionality for requirement 3.1.2 (Delete an account).
-"""
-
-
 def test_user_account_deletion():
+
+
+    """
+    Testing part of the functionality for requirement 3.1.2 (Delete an account).
+    """
 
     list = []
     testUserDetails = User_Details(["Soccer", "Golf", "Running", "Swimming"], [
@@ -71,12 +70,11 @@ def test_user_details_creation_retrieval():
     ).get_interests() == testUserDetails.get_interests()
 
 
-"""
-Testing part of the functionality for requirement 3.1.10 (Comment on event posting)
-"""
-
-
 def test_comment_creation():
+
+    """
+    Testing part of the functionality for requirement 3.1.10 (Comment on event posting)
+    """
     testUserDetails = User_Details(["Fishing", "Investing", "Computer Programming"], [
                                    "Religious Events", "Computing Conventions"], 21, "Male")
     user = User_Account(2223, "John_Smith", "Snake_tooth99", testUserDetails)
