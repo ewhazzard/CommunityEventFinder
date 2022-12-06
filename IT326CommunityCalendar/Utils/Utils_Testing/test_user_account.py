@@ -18,7 +18,7 @@ def test_user_details_creation():
     assert testUserDetails.get_intrests==["Computer Science","Math","Physics"]
 
 """
-Testing part of the functionality for requirement 3.1.15 (Search for city of interest). User searches for the city "Chicago".
+Testing part of the functionality for requirement 3.1.2 (Delete an account).
 """
 def test_user_account_deletion():
 
