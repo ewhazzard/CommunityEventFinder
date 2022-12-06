@@ -92,17 +92,23 @@ def eventcreate(request):
     # If this is the first Event, ID = 0
     else:
         new_event_id = 0
-    data = {
-            'event_id': new_event_id,
-            'user_id': user.user_id, 
-            'event_email': user_contact.email,
-            'event_phone': user_contact.phone,
-            'event_city': user_contact.location.city,
-            'event_state': user_contact.location.state,
-            'event_date':  date.today(),
-            'creator_first_name': user_contact.first_name,
-            'creator_last_name': user_contact.last_name}
-    form = CreateEvent(initial=data)
+    global user
+    form = CreateEvent()
+    print(type(user))
+    if (type(user) != None):
+        data = {
+                'event_id': new_event_id,
+                'user_id': user.user_id, 
+                'event_email': user.contact_info.email,
+                'event_phone': user.contact_info.phone,
+                'event_city': user.contact_info.location.city,
+                'event_state': user.contact_info.location.state,
+                'event_date':  date.today(),
+                'creator_first_name': user.contact_info.first_name,
+                'creator_last_name': user.contact_info.last_name}
+        form = CreateEvent(initial=data)
+    else:
+        redirect(login)
     if request.method == 'POST':
         form = CreateEvent(request.POST, initial=data)
         if form.is_valid():
@@ -152,8 +158,9 @@ def login(request):
         if user_from_db.user_password == input_password:
             user_details = User_Details.User_Details(user_from_db.user_hobbies, user_from_db.user_interests, user_from_db.user_age, user_from_db.user_gender)
             user_location = Location.Location(user_from_db.user_street, user_from_db.user_city, user_from_db.user_state, user_from_db.user_zipcode)
+            user_contact = Contact_Info.Contact_Info(user_from_db.user_fname, user_from_db.user_lname, user_from_db.user_email, user_from_db.user_phone, user_location)
             # To change the global version of the variables we have to address them as such
-            global user, user_contact 
+            global user
             user = User_Account.User_Account(user_from_db.user_id, user_from_db.user_username, user_from_db.user_password, user_details, user_from_db.user_admin, user_contact)
             # Redirect back to the homepage with logged in screen
             return redirect(home) 
@@ -226,9 +233,14 @@ def add_comment(request, event_id):
 
 def rsvp_to_event(request, event_id):
     event_object = Event.objects.get(event_id=event_id)
+    if(RSVP.objects.all().exists()):
+        rsvp_new_id = RSVP.objects.latest('rsvp_id').rsvp_id + 1
+    else:
+        rsvp_new_id = 0
     data = {'user_id': event_object.user_id, 
             'event_id': event_object.event_id,
-            'rsvp_date': date.today()}
+            'rsvp_date': date.today(),
+            'rsvp_id': rsvp_new_id }
     form = RSVPForm(initial = data)
     if request.method == 'POST':
         # Add the request to a Users object

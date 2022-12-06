@@ -117,7 +117,6 @@
                                         <th scope="col">RSVP ID</th>
                                         <th scope="col">Event ID</th>
                                         <th scope="col">RSVP Date</th>
-                                        <th scope="col">User ID</th>
                                         <th></th>
                                     {% endif %}
                                 {% endfor %}
@@ -127,9 +126,12 @@
                                 {% for row in  rsvp_query %}
                                 <tr>
                                     {% for item in row.values  %}
-                                        <td>{{item}}</td>
+                                        
                                         {% if forloop.counter == 4 %}
                                             <td scope="row"><a href="{{request.get_path}}deletersvp/{{row.rsvp_id}}">Delete RSVP</a>
+                                        {% elif forloop.counter == 4%}
+                                        {% else %}
+                                            <td>{{item}}</td>
                                         {% endif %}
                                     {% endfor %}
                                     
