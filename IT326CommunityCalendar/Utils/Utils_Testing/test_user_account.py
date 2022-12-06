@@ -17,10 +17,10 @@ def test_user_details_creation():
                                    "Computer Science", "Math", "Physics"], 19, "Boy")
 
     assert testUserDetails.get_age() == 19
-    assert testUserDetails.get_gender == "Boy"
-    assert testUserDetails.get_hobbies == [
+    assert testUserDetails.get_gender() == "Boy"
+    assert testUserDetails.get_hobbies() == [
         "Soccer", "Golf", "Running", "Swimming"]
-    assert testUserDetails.get_intrests == [
+    assert testUserDetails.get_interests() == [
         "Computer Science", "Math", "Physics"]
 
 def test_user_account_deletion():
@@ -37,9 +37,9 @@ def test_user_account_deletion():
     list.remove(user)
     del user
     del testUserDetails
-    
+
     if not list:
-        assert (1)
+        assert(True)
 
 
 def test_RSVP_creation():
@@ -51,11 +51,11 @@ def test_RSVP_creation():
     user = User_Account(2223, "John_Smith", "Snake_tooth99", testUserDetails)
     contact_info = Contact_Info(
         "John", "Smith", "john.smith@gmail.com", "854-456-7891", "Normal, IL")
-    event = Event(42387, contact_info, user.get_user_id)
+    event = Event(42387, contact_info, user.get_user_id())
     main_function = user.initiate_RSVP(42387)
-    rsvp_test = RSVP(user.get_user_id, datetime.date.today)
-    assert rsvp_test.get_user_id == main_function.get_user_id
-    assert rsvp_test.get_RSVP_date == main_function.get_RSVP_date
+    rsvp_test = RSVP(user.get_user_id(), datetime.date.today)
+    assert rsvp_test.get_user_id() == main_function.get_user_id()
+    assert rsvp_test.get_RSVP_date() == main_function.get_RSVP_date()
 
 
 def test_user_details_creation_retrieval():
