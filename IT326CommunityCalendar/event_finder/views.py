@@ -31,6 +31,7 @@ def event_search(request):
     return render(request, 'event_search_page.html')
 
 def profile(request):
+    numRSVPs = RSVP.objects.filter(user_id=user.user_id).count()
     user_obj = Users.objects.get(user_id=user.user_id)
     user_events = Event.objects.filter(user_id=user.user_id).values()
     user_rsvps = RSVP.objects.filter(user_id=user.user_id).values()
@@ -46,6 +47,7 @@ def profile(request):
         # 'user_phone' : user_obj.user_phone,
         # 'user_username' : user_obj.user_username,
         # 'user_zipcode' : user_obj.user_zipcode,
+        'numrsvp' : numRSVPs,
         'updateaddress' : 'profileupdate/',
         'event_query' : user_events,
         'rsvp_query': user_rsvps,
