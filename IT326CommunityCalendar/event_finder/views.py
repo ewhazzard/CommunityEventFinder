@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import CEFForm, LoginForm,CreateEvent,EditEvent, CommentForm, RSVPForm
+from .forms import CEFForm, LoginForm,CreateEvent,EditEvent, CommentForm, RSVPForm, EditProfile
 from .models import Users, Event, Comment, RSVP
 from Utils import User_Account, User_Details, Contact_Info, Location
+from datetime import datetime,timezone
 from datetime import date
 
 # Global User Variable to have a persistent User account
@@ -21,17 +22,34 @@ def home(request):
         'user' : user,
         'new' : True,
         'newaddress' : 'eventcreate/',
-        'update': True,
+        'update': True
     }
+    if(user):
+        context['admin'] = user.is_admin
     return render(request, 'event_finder_base.html', context)
 
 def event_search(request):
     return render(request, 'event_search_page.html')
 
 def profile(request):
+    numRSVPs = RSVP.objects.filter(user_id=user.user_id).count()
+    user_obj = Users.objects.get(user_id=user.user_id)
     user_events = Event.objects.filter(user_id=user.user_id).values()
     user_rsvps = RSVP.objects.filter(user_id=user.user_id).values()
     context = {
+        'user_query' : user_obj,
+        # 'user_fname' : user_obj.user_fname,
+        # 'user_lname' : user_obj.user_lname,
+        # 'user_age' : user_obj.user_age,
+        # 'user_city' : user_obj.user_city,
+        # 'user_gender' : user_obj.user_gender,
+        # 'user_hobbies' : user_obj.user_hobbies,
+        # 'user_interests' : user_obj.user_interests,
+        # 'user_phone' : user_obj.user_phone,
+        # 'user_username' : user_obj.user_username,
+        # 'user_zipcode' : user_obj.user_zipcode,
+        'numrsvp' : numRSVPs,
+        'updateaddress' : 'profileupdate/',
         'event_query' : user_events,
         'rsvp_query': user_rsvps,
         'user' : user,
@@ -39,6 +57,21 @@ def profile(request):
         'newaddress' : 'eventcreate/'
     }
     return render(request, 'profile_page.html', context)
+
+def profileupdate(request):
+    user_object = Users.objects.get(user_id=user.user_id)
+    form = EditProfile(instance=user_object)
+    if request.method == 'POST':
+        form = EditProfile(request.POST, instance=user_object)
+        if form.is_valid():
+            form.save()
+            return redirect(home)
+    context = { 
+               "form": form,
+               "user": user
+    }
+    return render(request, 'edit_profile_form.html', context)
+
 
 def eventcreate(request):
     data = {'user_id': user.user_id, 
@@ -94,7 +127,7 @@ def login(request):
             user_location = Location.Location(user_from_db.user_street, user_from_db.user_city, user_from_db.user_state, user_from_db.user_zipcode)
             # To change the global version of the variables we have to address them as such
             global user, user_contact 
-            user = User_Account.User_Account(user_from_db.user_id, user_from_db.user_username, user_from_db.user_password, user_details)
+            user = User_Account.User_Account(user_from_db.user_id, user_from_db.user_username, user_from_db.user_password, user_details, user_from_db.user_admin)
             user_contact = Contact_Info.Contact_Info(user_from_db.user_fname, user_from_db.user_lname, user_from_db.user_email, user_from_db.user_phone, user_location)
             # Redirect back to the homepage with logged in screen
             return redirect(home) 
@@ -118,11 +151,17 @@ def update_event(request, event_id):
     }
     return render(request, 'edit_event_form.html', context)
 
+def delete_event(request, event_id):
+    event_object = Event.objects.get(event_id=event_id).delete()
+    return redirect(home)
+
 def event_landing_page(request, event_id):
     event_object = Event.objects.get(event_id=event_id)
+    time_diff = datetime.now().replace(tzinfo=None) - event_object.event_date.replace(tzinfo=None)
     comments_object = Comment.objects.filter(event_id=event_id)
     rsvp_object = RSVP.objects.filter(event_id=event_id)
     context = {
+        'countdown' : time_diff,
         'event_query' : event_object,
         'user' : user,
         'new' : True,
