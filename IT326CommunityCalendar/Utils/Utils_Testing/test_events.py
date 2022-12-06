@@ -128,4 +128,4 @@ def test_event_deletion():
         "Neighborhood Party", "Fun Social Event", contactInfo1, datetime.date(2022, 5, 10))
     test_event=Event( 18, 747, event_details)
     del test_event
-    assert(test_event.event_details.get_title()!="Neighborhood Party")
+    assert(test_event!="Neighborhood Party")
