@@ -37,7 +37,7 @@ def test_user_account_deletion():
     list.remove(user)
     del user
     del testUserDetails
-
+    
     if not list:
         assert (1)
 
