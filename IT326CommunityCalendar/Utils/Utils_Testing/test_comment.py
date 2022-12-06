@@ -4,6 +4,10 @@ from Utils.comment import Comment
 from event import Event
 import datetime
 
+"""
+Testing part of the functionality for requirement 3.1.10 (Comment on event posting)
+"""
+
 
 def test_comment_creation():
     testComment = Comment("Looking forward to the event!",
