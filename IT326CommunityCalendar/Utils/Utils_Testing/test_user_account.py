@@ -11,6 +11,8 @@ import datetime
 
 
 def test_user_details_creation():
+    
+    """Testing part of the functionality for requirement 3.1.1 (Create an account)"""
     testUserDetails = User_Details(["Soccer", "Golf", "Running", "Swimming"], [
                                    "Computer Science", "Math", "Physics"], 19, "Boy")
 
@@ -24,9 +26,7 @@ def test_user_details_creation():
 def test_user_account_deletion():
 
 
-    """
-    Testing part of the functionality for requirement 3.1.2 (Delete an account).
-    """
+    """Testing part of the functionality for requirement 3.1.2 (Delete an account)"""
 
     list = []
     testUserDetails = User_Details(["Soccer", "Golf", "Running", "Swimming"], [
@@ -43,6 +43,9 @@ def test_user_account_deletion():
 
 
 def test_RSVP_creation():
+
+    """Testing part of the functionality for requirement 3.1.8 (RSVP to an event)"""
+
     testUserDetails = User_Details(["Soccer", "Golf", "Running", "Swimming"], [
                                    "Computer Science", "Math", "Physics"], 19, "Boy")
     user = User_Account(2223, "John_Smith", "Snake_tooth99", testUserDetails)
@@ -72,9 +75,7 @@ def test_user_details_creation_retrieval():
 
 def test_comment_creation():
 
-    """
-    Testing part of the functionality for requirement 3.1.10 (Comment on event posting)
-    """
+    """Testing part of the functionality for requirement 3.1.10 (Comment on event posting)"""
     testUserDetails = User_Details(["Fishing", "Investing", "Computer Programming"], [
                                    "Religious Events", "Computing Conventions"], 21, "Male")
     user = User_Account(2223, "John_Smith", "Snake_tooth99", testUserDetails)
