@@ -157,7 +157,9 @@ def delete_event(request, event_id):
 
 def event_landing_page(request, event_id):
     event_object = Event.objects.get(event_id=event_id)
-    time_diff = event_object.event_date.replace(tzinfo=None) - datetime.now().replace(tzinfo=None) 
+    time_diff = str(event_object.event_date.replace(tzinfo=None) - datetime.now().replace(tzinfo=None))
+    time_diff_ls = time_diff.split('.')
+    time_diff = time_diff_ls[0]
     comments_object = Comment.objects.filter(event_id=event_id)
     rsvp_object = RSVP.objects.filter(event_id=event_id)
     context = {
