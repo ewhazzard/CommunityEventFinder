@@ -2,6 +2,9 @@ from Utils.User_Details import User_Details
 from Utils.Contact_Info import Contact_Info
 from Utils.event import Event
 from Utils.event_details import Event_Details
+from Utils.RSVP import RSVP
+from Utils.comment import Comment
+from datetime import date
 
 class User_Account:
     # Class variables
@@ -42,7 +45,6 @@ class User_Account:
         """saves event to event list"""
         event1=event
         self.events.append(event1)
-        pass
 
     def log_out(self):
         """user logs out"""
@@ -50,11 +52,13 @@ class User_Account:
 
     def initiate_RSVP(self,event_id):
         """user RSVPs to an event"""
-        pass
+        creationRSVP = RSVP(date.today(),self.user_id)
+        return creationRSVP
 
     def initiate_comment(self,event_id,content):
         """user makes a comment on an event"""
-        pass
+        creationComment = Comment(content,1,date.today(), self.user_id)
+        return creationComment
 
     def customize_account(self, age, gender, interests, hobbies):
         """ Pass in the age, gender, interests, and hobbies for a user
