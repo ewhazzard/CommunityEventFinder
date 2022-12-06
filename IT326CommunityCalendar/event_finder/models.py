@@ -43,6 +43,7 @@ class Event(models.Model):
     event_phone = models.IntegerField(verbose_name="Event Phone Number")
     event_city = models.CharField(verbose_name="Event Location: City", max_length=100)
     event_state = models.CharField(verbose_name="Event Location: State", max_length=100)
+    event_flagged = models.BooleanField(verbose_name="Flagged for Abuse")
     
     def __str__(self):
         return self.event_title
