@@ -53,7 +53,7 @@
                             <tbody>
                                 {% for row in  query %}
                                 {% if row.event_flagged == True %}
-                                    <tr class="table-warning">
+                                    <tr class="table-danger">
                                 {% else %}
                                     <tr>
                                 {% endif %}
@@ -64,13 +64,7 @@
                                             <td scope="row"><a href="{{ request.get_path }}eventlanding/{{ row.event_id }}/">{{item}}</a></td>
                                         {% elif forloop.counter == 12%}
                                         {% else %}
-                                            {% if row.event_flagged == True %}
-                                                <td class="red_class">{{item}}</td>
-                                            {% else %}
-                                                <td>{{item}}</td>
-                                            {% endif %}
-                                            
-                                            
+                                            <td>{{item}}</td>
                                         {% endif %}
                                     {% endfor %}
                                     {% if admin %}
