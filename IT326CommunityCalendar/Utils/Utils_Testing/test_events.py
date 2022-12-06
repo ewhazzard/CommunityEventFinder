@@ -118,14 +118,3 @@ def test_countdown_timer():
     test_event=Event( 18, 747, event_details)
     time_diff = str(test_event.event_details.get_date.replace(tzinfo=None) - datetime.now().replace(tzinfo=None))
     assert(time_diff>0)
-
-def test_event_deletion():
-    """Tesing for 3.1.12- delete any event"""
-    location1 = Location("23 Blackberry St", "Normal", "IL", 61606)
-    contactInfo1 = Contact_Info(
-        "Dan", "Smith", "dsmith@ilstu.edu", "318-329-2930", location1)
-    event_details = Event_Details(
-        "Neighborhood Party", "Fun Social Event", contactInfo1, datetime.date(2022, 5, 10))
-    test_event=Event( 18, 747, event_details)
-    del test_event
-    assert(test_event!="Neighborhood Party")
