@@ -156,9 +156,11 @@ def delete_event(request, event_id):
 
 def event_landing_page(request, event_id):
     event_object = Event.objects.get(event_id=event_id)
+    time_diff = date.today() - event_object.event_date
     comments_object = Comment.objects.filter(event_id=event_id)
     rsvp_object = RSVP.objects.filter(event_id=event_id)
     context = {
+        'countdown' : time_diff,
         'event_query' : event_object,
         'user' : user,
         'new' : True,
