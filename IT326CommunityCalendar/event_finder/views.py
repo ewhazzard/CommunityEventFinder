@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .forms import CEFForm, LoginForm,CreateEvent,EditEvent, CommentForm, RSVPForm, EditProfile
 from .models import Users, Event, Comment, RSVP
 from Utils import User_Account, User_Details, Contact_Info, Location
-from datetime import datetime
+from datetime import datetime,timezone
 from datetime import date
 
 # Global User Variable to have a persistent User account
@@ -157,7 +157,7 @@ def delete_event(request, event_id):
 
 def event_landing_page(request, event_id):
     event_object = Event.objects.get(event_id=event_id)
-    time_diff = datetime.today() - event_object.event_date
+    time_diff = datetime.now(tzinfo=None) - event_object.event_date.replace(tzinfo=None)
     comments_object = Comment.objects.filter(event_id=event_id)
     rsvp_object = RSVP.objects.filter(event_id=event_id)
     context = {
