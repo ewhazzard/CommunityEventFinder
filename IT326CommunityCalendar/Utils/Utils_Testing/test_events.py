@@ -6,13 +6,13 @@ from Utils.event_details import Event_Details
 from Utils.Location import Location
 from Utils.User_Details import User_Details
 from Utils.User_Account import User_Account
-import datetime
+from datetime import datetime,timezone,date
 
 
 def test_event_details_creation_retrieval():
     """Testing for 3.1.6- create an event"""
     testEventDetails = Event_Details("Neighborhood Party", "Fun Social Event", Contact_Info(
-        "", "", "", "", Location("", "", "", 0)), datetime.date(2022, 5, 10))
+        "", "", "", "", Location("", "", "", 0)), date(2022, 5, 10))
     testEvent = Event("1111", "2222", testEventDetails)
 
     assert testEvent.get_event_details().get_date() == testEventDetails.get_date()
@@ -26,7 +26,7 @@ def test_event_contact_info_creation_retrieval():
     testContact = Contact_Info(
         "Dan", "Smith", "dsmith@ilstu.edu", "318-329-2930", Location("", "", "", 0))
     testEventDetails = Event_Details(
-        "Neighborhood Party", "Fun Social Event", testContact, datetime.date(2022, 5, 10))
+        "Neighborhood Party", "Fun Social Event", testContact, date(2022, 5, 10))
     testEvent = Event("1111", "2222", testEventDetails)
 
     assert testEvent.get_event_details().get_contact_info(
@@ -45,7 +45,7 @@ def test_event_location_info_creation_retrieval():
     testContact = Contact_Info(
         "Dan", "Smith", "dsmith@ilstu.edu", "318-329-2930", testLocation)
     testEventDetails = Event_Details(
-        "Neighborhood Party", "Fun Social Event", testContact, datetime.date(2022, 5, 10))
+        "Neighborhood Party", "Fun Social Event", testContact, date(2022, 5, 10))
     testEvent = Event("1111", "2222", testEventDetails)
 
     assert testEvent.get_event_details().get_contact_info(
@@ -73,9 +73,9 @@ Testing part of the functionality for requirement 3.1.15 (Search for city of int
         "Dan", "Smith", "dsmith@ilstu.edu", "318-329-2930", location2)
 
     eventDetails1 = Event_Details(
-        "Neighborhood Party", "Fun Social Event", contactInfo1, datetime.date(2022, 5, 10))
+        "Neighborhood Party", "Fun Social Event", contactInfo1, date(2022, 5, 10))
     eventDetails2 = Event_Details(
-        "Gathering", "Casual Event", contactInfo2, datetime.date(2022, 6, 13))
+        "Gathering", "Casual Event", contactInfo2, date(2022, 6, 13))
 
     event1 = Event("1234", "5555", eventDetails1)
     event2 = Event("9992", "1222", eventDetails2)
@@ -96,17 +96,18 @@ def test_editing_event_details():
     contactInfo1 = Contact_Info(
         "Dan", "Smith", "dsmith@ilstu.edu", "318-329-2930", location1)
     event_details = Event_Details(
-        "Neighborhood Party", "Fun Social Event", contactInfo1, datetime.date(2022, 5, 10))
+        "Neighborhood Party", "Fun Social Event", contactInfo1, date(2022, 5, 10))
     test_event=Event( 18, 747, event_details)
-    assert(test_event.event_details.get_date==event_details.get_date)
-    assert(test_event.event_details.get_description==event_details.get_description)
-    assert(test_event.event_details.get_title==event_details.get_title)
-    test_event.event_details.set_date(datetime(2022,5,12))
+
+    assert(test_event.event_details.get_date()==event_details.get_date())
+    assert(test_event.event_details.get_description()==event_details.get_description())
+    assert(test_event.event_details.get_title()==event_details.get_title())
+    test_event.event_details.set_date(date(2022,5,12))
     test_event.event_details.set_description("verry Fun Social Event")
     test_event.event_details.set_title("City Party")
-    assert(test_event.event_details.get_date==datetime(2022,5,12))
-    assert(test_event.event_details.get_description=="verry Fun Social Event")
-    assert(test_event.event_details.get_title=="City Party")
+    assert(test_event.event_details.get_date()==date(2022,5,12))
+    assert(test_event.event_details.get_description()=="verry Fun Social Event")
+    assert(test_event.event_details.get_title()=="City Party")
 
 def test_countdown_timer():
     """Testing for 3.1.19- display countdown timer for events"""
@@ -114,7 +115,7 @@ def test_countdown_timer():
     contactInfo1 = Contact_Info(
         "Dan", "Smith", "dsmith@ilstu.edu", "318-329-2930", location1)
     event_details = Event_Details(
-        "Neighborhood Party", "Fun Social Event", contactInfo1, datetime.date(2022, 5, 10))
+        "Neighborhood Party", "Fun Social Event", contactInfo1, date(2022, 5, 10))
     test_event=Event( 18, 747, event_details)
-    time_diff = str(test_event.event_details.get_date.replace(tzinfo=None) - datetime.now().replace(tzinfo=None))
-    assert(time_diff>0)
+    time_diff = test_event.event_details.get_date() - date.today()
+    assert(time_diff == (date(2022,5,10) - date.today()))
