@@ -8,47 +8,38 @@ class Event_Details:
         self.__event_contact_info = event_contact_info
         self.__event_date = event_date
 
-    ''' Getter for the date instance variable '''
-
     def get_date(self):
+        ''' Getter for the date instance variable '''
         return self.__event_date
 
-    ''' Getter for the description instance variable '''
-
     def get_description(self):
+        ''' Getter for the description instance variable '''
         return self.__event_description
 
-    ''' Getter for the title instance variable '''
-
     def get_title(self):
+        ''' Getter for the title instance variable '''
         return self.__event_title
 
-    ''' Getter for the contact_info instance variable '''
-
     def get_contact_info(self):
+        ''' Getter for the contact_info instance variable '''
         return self.__event_contact_info
 
-    ''' Setter for the title instance variable '''
-
     def set_title(self, title):
+        ''' Setter for the title instance variable '''
         self.__event_title = title
 
-    ''' Setter for the description instance variable '''
-
     def set_description(self, desc):
+        ''' Setter for the description instance variable '''
         self.__event_description = desc
 
-    ''' Setter for the location instance variable '''
-
     def set_location(self, loca):
+        ''' Setter for the location instance variable '''
         self.__event_location = loca
 
-    ''' Setter for the city instance variable '''
-
     def set_city(self, city):
+        ''' Setter for the city instance variable '''
         self.__event_city = city
 
-    ''' Setter for the date instance variable '''
-
     def set_date(self, date):
+        ''' Setter for the date instance variable '''
         self.__event_date = date
