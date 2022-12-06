@@ -1,5 +1,6 @@
 from Utils.User_Details import User_Details
-
+from Utils.Contact_Info import Contact_Info
+from event import Event
 
 class User_Account:
     # Class variables
@@ -19,12 +20,13 @@ class User_Account:
     is_admin = False
 
     # Constructor
-    def __init__(self, user_id, user_name, password, user_details, is_admin):
+    def __init__(self, user_id, user_name, password, user_details, is_admin,contact_info):
         self.user_id = user_id
         self.user_name = user_name
         self.password = password
         self.user_details = user_details
         self.is_admin = is_admin
+        self.contact_info=contact_info
         
     def __str__(self) -> str:
         return self.user_name
@@ -72,6 +74,10 @@ class User_Account:
         return self.events
 
     def add_event(self):
+        self.event_details=event_details(self.contact_info)
+        self.event=Event(self.event_details)
+        #here I will link the contact info to an event that you create 
+        
         pass
     def get_user_id(self):
         return self.user_id
