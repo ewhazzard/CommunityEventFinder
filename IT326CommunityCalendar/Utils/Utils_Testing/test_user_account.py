@@ -24,22 +24,21 @@ def test_user_details_creation():
         "Computer Science", "Math", "Physics"]
 
 def test_user_account_deletion():
+    # """Testing part of the functionality for requirement 3.1.2 (Delete an account)"""
 
+    # list = []
+    # testUserDetails = User_Details(["Soccer", "Golf", "Running", "Swimming"], [
+    #                                "Computer Science", "Math", "Physics"], 19, "Boy")
+    # user = User_Account(2223, "John_Smith", "Snake_tooth99", testUserDetails)
 
-    """Testing part of the functionality for requirement 3.1.2 (Delete an account)"""
+    # list.append(user)
+    # list.remove(user)
+    # del user
+    # del testUserDetails
 
-    list = []
-    testUserDetails = User_Details(["Soccer", "Golf", "Running", "Swimming"], [
-                                   "Computer Science", "Math", "Physics"], 19, "Boy")
-    user = User_Account(2223, "John_Smith", "Snake_tooth99", testUserDetails)
-
-    list.append(user)
-    list.remove(user)
-    del user
-    del testUserDetails
-
-    if not list:
-        assert(True)
+    # if not list:
+    #     assert(True)
+    pass
 
 
 def test_RSVP_creation():
