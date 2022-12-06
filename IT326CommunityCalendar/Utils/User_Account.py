@@ -31,53 +31,66 @@ class User_Account:
         self.RSVP_count=0
 
     def __str__(self) -> str:
+        """returns the user name"""
         return self.user_name
 
-    # Not sure we need this functionality here. Probably should be handled purely in the Django class
     def delete_account(self):
+        """deletes account"""
         pass
-    # Function to start a list of Event objects the user has created
 
-    def initiate_event_creation(self):
+    def initiate_event_creation(self,event):
+        """saves event to event list"""
+        event1=event
+        self.events.append(event1)
         pass
-    # Not sure we need this functionality here. Probably should be handled purely in the Django class
 
     def log_out(self):
+        """user logs out"""
         pass
 
     def initiate_RSVP(self,event_id):
+        """user RSVPs to an event"""
         pass
 
     def initiate_comment(self,event_id,content):
+        """user makes a comment on an event"""
         pass
-    # Pass in the age, gender, interests, and hobbies for a user
-    # and create a User_Details object with that information
 
     def customize_account(self, age, gender, interests, hobbies):
+        """ Pass in the age, gender, interests, and hobbies for a user
+     and create a User_Details object with that information"""
         self.user_details = User_Details(age, gender, interests, hobbies)
 
     def get_user_details(self):
+        """returns user details"""
         return self.user_details
-
+    
     def get_username(self):
+        """returns username"""
         return self.user_name
-
+    
     def set_username(self, user_name):
+        """changes value of user name"""
         self.user_name = user_name
-
+    
     def get_password(self):
+        '''returns users password'''
         return self.password
 
     def set_password(self, password):
+        """changes value of users password"""
         self.password = password
 
     def get_events(self):
+        """returns list of events the user made"""
         return self.events
 
     def add_event(self, event_title, event_description,event_date):
+        """user creates an event and adds it to the list of events"""
         self.event_details=Event_Details(event_title,event_description,self.contact_info,event_date)
         self.event=Event(8,self.user_id, self.event_details) 
-        self.events.append(self.event)
+        self.initiate_event_creation(self.event)
         
     def get_user_id(self):
+        """return the users id"""
         return self.user_id
