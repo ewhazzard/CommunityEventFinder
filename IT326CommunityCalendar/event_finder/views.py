@@ -253,17 +253,17 @@ def rsvp_to_event(request, event_id):
     context = {'form': form, 'user' : user, 'event_name': event_object.event_title}
     return render(request, 'add_rsvp.html', context)
 
-def logout(request):
+def logout():
     global user, user_contact
     user = None
     user_contact = None
     return redirect(home)
         
-def delete_rsvp(request, rsvp_id):
+def delete_rsvp(rsvp_id):
     RSVP.objects.get(rsvp_id=rsvp_id).delete()
     return redirect(home)
 
-def delete_user(request, user_id):
+def delete_user( user_id):
     Users.objects.get(user_id=user_id).delete()
     global user
     user = None
