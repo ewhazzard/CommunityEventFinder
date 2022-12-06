@@ -35,11 +35,11 @@ def event_search(request):
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
-            if form['event_title']:
+            if form['event_title'].value():
                 event_list = Event.objects.filter(event_title=form['event_title'].value()).values()
-            elif form['event_city']:
+            elif form['event_city'].value():
                 event_list = Event.objects.filter(event_city=form['event_city'].value()).values()
-            elif form['event_state']:
+            elif form['event_state'].value():
                 event_list = Event.objects.filter(event_state=form['event_state'].value()).values()
             else:
                 event_list = Event.objects.all().order_by('-event_date').values()
