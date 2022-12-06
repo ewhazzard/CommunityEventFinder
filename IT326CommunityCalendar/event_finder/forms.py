@@ -51,6 +51,10 @@ class RSVPForm(ModelForm):
         fields = '__all__'
 
 class SearchForm(ModelForm):
+    event_title = forms.CharField(required=False)
+    event_city = forms.CharField(required=False)
+    event_state = forms.CharField(required=False)
     class Meta:
         model = Event
         fields = ['event_title','event_city','event_state']
+        
