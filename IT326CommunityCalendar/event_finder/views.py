@@ -21,9 +21,10 @@ def home(request):
         'user' : user,
         'new' : True,
         'newaddress' : 'eventcreate/',
-        'update': True,
-        'admin': user.is_admin
+        'update': True
     }
+    if(user):
+        context['admin'] = user.is_admin
     return render(request, 'event_finder_base.html', context)
 
 def event_search(request):
