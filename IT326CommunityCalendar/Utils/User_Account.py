@@ -42,7 +42,7 @@ class User_Account:
         """saves event to event list"""
         event1=event
         self.events.append(event1)
-        pass
+        
 
     def log_out(self):
         """user logs out"""
