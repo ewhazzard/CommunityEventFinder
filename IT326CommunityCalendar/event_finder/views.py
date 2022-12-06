@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import CEFForm, LoginForm,CreateEvent,EditEvent, CommentForm, RSVPForm
+from .forms import CEFForm, LoginForm,CreateEvent,EditEvent, CommentForm, RSVPForm, EditProfile
 from .models import Users, Event, Comment, RSVP
 from Utils import User_Account, User_Details, Contact_Info, Location
 from datetime import date
@@ -45,6 +45,7 @@ def profile(request):
         # 'user_phone' : user_obj.user_phone,
         # 'user_username' : user_obj.user_username,
         # 'user_zipcode' : user_obj.user_zipcode,
+        'updateaddress' : 'profileupdate/',
         'event_query' : user_events,
         'rsvp_query': user_rsvps,
         'user' : user,
@@ -52,6 +53,21 @@ def profile(request):
         'newaddress' : 'eventcreate/'
     }
     return render(request, 'profile_page.html', context)
+
+def profileupdate(request):
+    event_object = Users.objects.get(user_id=user.user_id)
+    form = EditProfile(instance=event_object)
+    if request.method == 'POST':
+        form = EditProfile(request.POST, instance=event_object)
+        if form.is_valid():
+            form.save()
+            return redirect(home)
+    context = { 
+               "form": form,
+               "user": user
+    }
+    return render(request, 'edit_profile_form.html', context)
+
 
 def eventcreate(request):
     data = {'user_id': user.user_id, 

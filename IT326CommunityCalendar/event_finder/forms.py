@@ -32,6 +32,11 @@ class EditEvent(ModelForm):
             'event_date': widgets.SelectDateWidget()
         }
 
+class EditProfile(ModelForm):
+    class Meta:
+        model = Event
+        fields = '__all__'
+
 class CommentForm(ModelForm):
     class Meta:
         model = Comment
