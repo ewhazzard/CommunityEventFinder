@@ -30,5 +30,3 @@ class Event_Details:
     def set_city(self, city):
         self.__event_city = city
 
-    def create_contact_info():
-        pass
