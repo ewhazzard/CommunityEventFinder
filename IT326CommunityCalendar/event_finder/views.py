@@ -75,7 +75,7 @@ def profileupdate(request):
 
 
 def eventcreate(request):
-    new_event_id = Event.objects.aggregate(Max('event_id')) + 1
+    new_event_id = Event.objects.latest('event_id').event_id + 1
     data = {
             'event_id': new_event_id,
             'user_id': user.user_id, 
@@ -156,7 +156,7 @@ def update_event(request, event_id):
     return render(request, 'edit_event_form.html', context)
 
 def delete_event(request, event_id):
-    event_object = Event.objects.get(event_id=event_id).delete()
+    Event.objects.get(event_id=event_id).delete()
     return redirect(home)
 
 def event_landing_page(request, event_id):
