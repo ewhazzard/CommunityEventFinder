@@ -56,10 +56,10 @@ def profile(request):
     return render(request, 'profile_page.html', context)
 
 def profileupdate(request):
-    event_object = Users.objects.get(user_id=user.user_id)
-    form = EditProfile(instance=event_object)
+    user_object = Users.objects.get(user_id=user.user_id)
+    form = EditProfile(instance=user_object)
     if request.method == 'POST':
-        form = EditProfile(request.POST, instance=event_object)
+        form = EditProfile(request.POST, instance=user_object)
         if form.is_valid():
             form.save()
             return redirect(home)
