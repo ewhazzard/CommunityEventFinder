@@ -15,9 +15,10 @@
             <a class="navbar-brand" href="{% url 'homepage' %}">Community Event Finder</a>
             <a class="nav-item custom-nav-item" id="active-nav-item" href="{% url 'homepage' %}">Home</a>
             <a class="nav-item custom-nav-item" href="{% url 'searchpage' %}">Event Search</a>
-            <a class="nav-item custom-nav-item" href="{% url 'profilepage' %}">Profile</a>
             {% if user %}
+                <a class="nav-item custom-nav-item" href="{% url 'profilepage' %}">Profile</a>
                 <a class="nav-item custom-nav-item">{{user}}</a>
+                <a class="nav-item custom-nav-item" href="{% url 'logout' %}">Logout</a>
             {% endif %}
             
         </div>

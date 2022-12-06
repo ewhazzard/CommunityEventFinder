@@ -19,9 +19,7 @@
                 {% if user %}
                     <a class="nav-item custom-nav-item" href="{% url 'profilepage' %}">Profile</a>
                     <a class="nav-item custom-nav-item">{{user}}</a>
-                {% else %}
-                    <a class="nav-item custom-nav-item" href="{% url 'createaccount' %}">Create Account</a>
-                    <a class="nav-item custom-nav-item" href="{% url 'login' %}">Login</a>
+                    <a class="nav-item custom-nav-item" href="{% url 'logout' %}">Logout</a>
                 {% endif %}
                 
             </div>

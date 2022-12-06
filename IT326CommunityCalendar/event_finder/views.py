@@ -49,7 +49,7 @@ def event_search(request):
                     'form': form
             }
             return render(request, 'event_finder_base.html', context)
-    return render(request,'event_search_form.html', {'form': form})
+    return render(request,'event_search_form.html', {'form': form, 'user' : user})
 
 def profile(request):
     numRSVPs = RSVP.objects.filter(user_id=user.user_id).count()
@@ -64,7 +64,9 @@ def profile(request):
         'rsvp_query': user_rsvps,
         'user' : user,
         'new' : True,
-        'newaddress' : 'eventcreate/'
+        'newaddress' : 'eventcreate/',
+        'delete': True,
+        'userdeleteaddress': 'deleteuser/'
     }
     return render(request, 'profile_page.html', context)
 
@@ -130,7 +132,7 @@ def create_account(request):
             form.save()
             # Return control to home page after form submission
             return redirect(home)
-    context = {'form': form}
+    context = {'form': form , 'user' : user}
     return render(request, 'create_account.html', context)
 
 # View to facilitate the log in requirement
@@ -158,7 +160,7 @@ def login(request):
         else:
             pass
             # Handle incorrect Login
-    context = {'form': form}
+    context = {'form': form, 'user' : user,}
     return render(request, 'login.html', context)
 
 def update_event(request, event_id):
@@ -236,7 +238,7 @@ def rsvp_to_event(request, event_id):
             form.save()
             # Return control to home page after form submission
             return redirect(home)
-    context = {'form': form}
+    context = {'form': form, 'user' : user, 'event_name': event_object.event_title}
     return render(request, 'add_rsvp.html', context)
 
 def logout(request):
@@ -247,5 +249,11 @@ def logout(request):
         
 def delete_rsvp(request, rsvp_id):
     RSVP.objects.get(rsvp_id=rsvp_id).delete()
+    return redirect(home)
+
+def delete_user(request, user_id):
+    Users.objects.get(user_id=user_id).delete()
+    global user
+    user = None
     return redirect(home)
     

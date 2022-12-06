@@ -8,6 +8,7 @@ urlpatterns = [
     path('profile/', views.profile, name='profilepage'),
     path('eventcreate/',views.eventcreate,name='eventcreatepage'),
     path('profile/profileupdate/',views.profileupdate,name='profileupdate'),
+    path('profile/deleteuser/<int:user_id>',views.delete_user,name='deleteuser'),
     path('createaccount/', views.create_account, name='createaccount'),
     path('login/', views.login, name='login'),
     path('update/<int:event_id>/', views.update_event, name='updateevent'),

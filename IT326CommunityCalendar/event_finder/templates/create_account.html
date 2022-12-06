@@ -3,12 +3,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, intitial-scale=1.0">
-    <title> Create Account </title>
-</head>
+    <head>
+        <title>Create Account</title>
+        <link rel="stylesheet" href="../static/css/event_finder_base.css">
+        <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+        <script src="../static/js/bootstrap.bundle.min.js"></script>
+    </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div id="navbarSupportedContent">
+            <a class="navbar-brand" href="{% url 'homepage' %}">Community Event Finder</a>
+            <a class="nav-item custom-nav-item" id="active-nav-item" href="{% url 'homepage' %}">Home</a>
+            <a class="nav-item custom-nav-item" href="{% url 'searchpage' %}">Event Search</a>
+        </div>
+    </nav>
     <div>
         <div class = "banner">
             <h2> Community Event Manager </h2>

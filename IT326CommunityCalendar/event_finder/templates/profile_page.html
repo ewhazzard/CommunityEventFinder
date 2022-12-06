@@ -16,14 +16,16 @@
                 <a class="nav-item custom-nav-item" id="active-nav-item" href="{% url 'homepage' %}">Home</a>
                 <a class="nav-item custom-nav-item" href="{% url 'searchpage' %}">Event Search</a>
                 <a class="nav-item custom-nav-item" href="{% url 'profilepage' %}">Profile</a>
-                {% if user %}
-                    <a class="nav-item custom-nav-item">{{user}}</a>
-                    <a class="nav-item custom-nav-item" href="{% url 'logout' %}">Logout</a>
-                {% endif %}
+                <a class="nav-item custom-nav-item">{{user}}</a>
+                <a class="nav-item custom-nav-item" href="{% url 'logout' %}">Logout</a>
+                
             </div>
         </nav>
         <h1 id="main_header">{{user}}'s Profile</h1>
         <button type="button" class="btn waves-effect waves-list btn-info" onclick="location.href='{{updateaddress}}'"> Update Profile</button>
+        {% if delete %}
+            <button type="button" class="btn waves-effect waves-list btn-info" onclick="location.href='{{userdeleteaddress}}{{user_query.user_id}}'"> Delete User</button>
+        {% endif %}
         <h2>Profile Information</h2>
         {%block contents%}
         <h6>Total RSVPs: {{numrsvp}}</h6>
